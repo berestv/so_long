@@ -6,13 +6,14 @@
 /*   By: bbento-e <bbento-e@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 15:39:52 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/05/30 15:41:25 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/05/30 15:56:39 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main ()
+int	main(int argc, char *argv[])
 {
-
+	if (argc < 2)
+		return (0);
 }
