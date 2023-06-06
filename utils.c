@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbento-e <bbento-e@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/30 15:39:16 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/06 19:32:57 by bbento-e         ###   ########.fr       */
+/*   Created: 2023/06/06 19:28:00 by bbento-e          #+#    #+#             */
+/*   Updated: 2023/06/06 19:32:51 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "so_long.h"
 
-# include "minilibx-linux/mlx.h"
-# include "libft/libft.h"
-# include <X11/X.h>
-# include <X11/keysym.h>
-# include <stdlib.h>
-# include <signal.h>
-
-typedef struct s_data
+void	err_handler(void)
 {
-	void	*mlx;
-	void	*win;
-}			t_data;
+	ft_printf("Error!\nProgram usage: ./so_long [path]/[mapname].ber");
+}
 
-// ----------- ERRORS ----------- //
-void	err_handler(void);
-int		int_err_handler(int n);
-
-#endif
+int	int_err_handler(int n)
+{
+	ft_printf("Error!\nProgram usage: ./so_long [path]/[mapname].ber");
+	return (n);
+}
