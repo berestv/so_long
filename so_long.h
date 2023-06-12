@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 15:39:16 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/06 19:32:57 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/12 17:35:33 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,8 @@ typedef struct s_data
 // ----------- ERRORS ----------- //
 void	err_handler(void);
 int		int_err_handler(int n);
+
+// ----------- CHECKS ----------- //
+int		ber(char *str);
 
 #endif

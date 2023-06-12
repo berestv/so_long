@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 19:28:00 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/06 19:32:51 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/12 17:45:22 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	err_handler(void)
 {
-	ft_printf("Error!\nProgram usage: ./so_long [path]/[mapname].ber");
+	ft_putstr_fd("Error! Program usage: ./so_long [path]/[mapname].ber\n", 2);
 }
 
 int	int_err_handler(int n)
 {
-	ft_printf("Error!\nProgram usage: ./so_long [path]/[mapname].ber");
+	ft_putstr_fd("Error! Program usage: ./so_long [path]/[mapname].ber\n", 2);
 	return (n);
 }
