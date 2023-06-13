@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 15:39:52 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/12 17:48:23 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/13 19:35:29 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,7 @@ int	keyhandler(int keysym, t_data *mlx)
 	return (0);
 }
 
-int	ber(char *str)
-{
-	int	i;
 
-	i = (int)ft_strlen(str) - 4;
-	if (ft_strncmp(str + i, ".ber", 4) != 0)
-	{
-		ft_putstr_fd("Wrong map format. Use [mapname].ber\n", 2);
-		return (-1);
-	}
-	return (0);
-}
 
 int	main(int argc, char *argv[])
 {
@@ -46,7 +35,7 @@ int	main(int argc, char *argv[])
 	(void) argv;
 	if (argc != 2)
 		return (int_err_handler(0));
-	if (ber(argv[1]) != 0)
+	if (ber(argv[1]) != 0 || verify(&mlx) == -1)
 		return (0);
 	mlx.mlx = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx, 500, 500, "so_long");
