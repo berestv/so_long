@@ -6,11 +6,9 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:12 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/14 17:23:13 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/14 17:23:59 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #ifndef SO_LONG_H
 # define SO_LONG_H

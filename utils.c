@@ -6,17 +6,17 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:32 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/14 17:23:32 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/14 18:07:57 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "so_long.h"
 
 int	get_lines(t_data *data, char *path)
 {
-	data->fd = open();
+	data->fd = open(path, O_RDONLY);
+
+	return (0);
 }
 
 int	err_picker(char type)
@@ -56,18 +56,25 @@ void	free_list(t_data *data)
 	int	i;
 
 	i = 0;
-	free(data->mlx);
-	while (data->map)
+	if (data->mlx)
+		free(data->mlx);
+	if (data->map)
 	{
-		free(data->map[i]);
-		i++;
+		while (data->map[i])
+		{
+			free(data->map[i]);
+			i++;
+		}
+		free(data->map);
 	}
-	free(data->map);
 	i = 0;
-	while (data->copy)
+	if (data->copy)
 	{
-		free(data->copy[i]);
-		i++;
+		while (data->copy[i])
+		{
+			free(data->copy[i]);
+			i++;
+		}
+		free(data->copy);
 	}
-	free(data->copy);
 }
