@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:27 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/14 18:08:17 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/14 18:43:39 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	keyhandler(int keysym, t_data *data)
 {
 	if (keysym == XK_Escape)
 		mlx_destroy_window(data->mlx, data->win);
-	ft_printf("Keypress: %d\n", keysym);
 	return (0);
 }
 
@@ -40,7 +39,8 @@ int	main(int argc, char *argv[])
 		mlx_key_hook(data.win, &keyhandler, &data);
 		mlx_loop(data.mlx);
 		mlx_destroy_display(data.mlx);
-		free_list(&data);
+		free(data.mlx);
+		// free_2d(data.map, data.y);
 	}
 	else
 		return (int_err_handler(0));

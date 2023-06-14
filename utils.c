@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:32 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/14 18:07:57 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/14 18:37:34 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,30 +51,15 @@ int	int_err_handler(int n)
 	return (n);
 }
 
-void	free_list(t_data *data)
+void	free_2d(char **array, int size)
 {
 	int	i;
 
 	i = 0;
-	if (data->mlx)
-		free(data->mlx);
-	if (data->map)
+	while (i < size)
 	{
-		while (data->map[i])
-		{
-			free(data->map[i]);
-			i++;
-		}
-		free(data->map);
+		free(array[i]);
+		i++;
 	}
-	i = 0;
-	if (data->copy)
-	{
-		while (data->copy[i])
-		{
-			free(data->copy[i]);
-			i++;
-		}
-		free(data->copy);
-	}
+	free(array);
 }

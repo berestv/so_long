@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:12 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/14 17:23:59 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/14 18:37:25 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,6 @@ int		verify(t_data *mlx, char *str);
 
 // ----------- UTILS -----------  //
 int		get_lines(t_data *data, char *path);
-void	free_list(t_data *data);
+void	free_2d(char **array, int size);
 
 #endif
