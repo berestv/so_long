@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 15:39:52 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/13 19:35:29 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/14 17:06:30 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,18 @@ int	main(int argc, char *argv[])
 {
 	t_data	mlx;
 
-	(void) argv;
-	if (argc != 2)
-		return (int_err_handler(0));
-	if (ber(argv[1]) != 0 || verify(&mlx) == -1)
-		return (0);
-	mlx.mlx = mlx_init();
-	mlx.win = mlx_new_window(mlx.mlx, 500, 500, "so_long");
-	mlx_loop_hook(mlx.mlx, &nullevent, &mlx);
-	mlx_key_hook(mlx.win, &keyhandler, &mlx);
-	mlx_loop(mlx.mlx);
-	mlx_destroy_display(mlx.mlx);
-	free(mlx.mlx);
-	return (0);
+	if (argc == 2)
+	{
+		if (verify(&mlx, argv[1]) == -1)
+			return (0);
+		mlx.mlx = mlx_init();
+		mlx.win = mlx_new_window(mlx.mlx, 1920, 1080, "so_long");
+		mlx_loop_hook(mlx.mlx, &nullevent, &mlx);
+		mlx_key_hook(mlx.win, &keyhandler, &mlx);
+		mlx_loop(mlx.mlx);
+		mlx_destroy_display(mlx.mlx);
+		free(mlx.mlx);
+	}
+	free()
+	return (int_err_handler(0));
 }

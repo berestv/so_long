@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 15:39:16 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/13 19:28:15 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/14 17:12:01 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,16 @@ typedef struct s_data
 
 // ----------- ERRORS ----------- //
 void	err_handler(void);
+int		err_picker(char type);
 int		int_err_handler(int n);
 
 // ----------- CHECKS ----------- //
-int		ber(char *str);
+int		verify(t_data *mlx, char *str);
 
 // ----------- VERIFS ----------- //
+
+// ----------- UTILS -----------  //
+int		get_lines(t_data *data, char *path);
+void	free_list(t_data *data);
 
 #endif

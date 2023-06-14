@@ -10,8 +10,10 @@ MLBX = minilibx-linux/libmlx_Linux.a
 
 SRCS =  so_long.c \
 		utils.c \
+		errors.c \
+		verif.c \
 
-BONUS = \
+# BONUS = \
 
 OBJS = $(SRCS:%.c=%.o)
 
@@ -19,8 +21,10 @@ OBJS_BONUS = $(BONUS:%.c=%.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(MLBX) $(LIBFT)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLBX) $(MFLAGS) -o so_long
+$(NAME): $(OBJS)
+	make all -C libft
+	make all -C minilibx-linux
+	@$(CC) $(CFLAGS) $(MFLAGS) $(OBJS) $(LIBFT) $(MLBX) -o so_long
 
 #bonus: $(OBJS_BONUS) $(MLBX) $(LIBFT)
 #	@$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIBFT) $(MFLAGS) -o bonus
