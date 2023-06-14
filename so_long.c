@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbento-e <bbento-e@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/30 15:39:52 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/14 17:06:30 by bbento-e         ###   ########.fr       */
+/*   Created: 2023/06/14 17:23:27 by bbento-e          #+#    #+#             */
+/*   Updated: 2023/06/14 17:23:28 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
 
 #include "so_long.h"
 
@@ -26,24 +28,24 @@ int	keyhandler(int keysym, t_data *mlx)
 	return (0);
 }
 
-
-
 int	main(int argc, char *argv[])
 {
-	t_data	mlx;
+	t_data	data;
 
 	if (argc == 2)
 	{
-		if (verify(&mlx, argv[1]) == -1)
+		if (verify(&data, argv[1]) == -1)
 			return (0);
-		mlx.mlx = mlx_init();
-		mlx.win = mlx_new_window(mlx.mlx, 1920, 1080, "so_long");
-		mlx_loop_hook(mlx.mlx, &nullevent, &mlx);
-		mlx_key_hook(mlx.win, &keyhandler, &mlx);
-		mlx_loop(mlx.mlx);
-		mlx_destroy_display(mlx.mlx);
-		free(mlx.mlx);
+		data.mlx = mlx_init();
+		data.win = mlx_new_window(data.mlx, 1920, 1080, "so_long");
+		mlx_loop_hook(data.mlx, &nullevent, &data);
+		mlx_key_hook(data.win, &keyhandler, &data);
+		mlx_loop(data.mlx);
+		mlx_destroy_display(data.mlx);
+		free(data.mlx);
 	}
-	free()
-	return (int_err_handler(0));
+	else
+		return (int_err_handler(0));
+	free_list(&data);
+	return (0);
 }

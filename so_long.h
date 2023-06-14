@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbento-e <bbento-e@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/30 15:39:16 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/14 17:12:01 by bbento-e         ###   ########.fr       */
+/*   Created: 2023/06/14 17:23:12 by bbento-e          #+#    #+#             */
+/*   Updated: 2023/06/14 17:23:13 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
