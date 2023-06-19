@@ -1,45 +1,54 @@
 NAME = so_long
-BONUS = so_long_bonus
+NAME_BONUS = so_long_bonus
 
 CC = cc -g
 CFLAGS = -Wall -Wextra -Werror
 MFLAGS = -lX11 -lXext
 RM = rm -rf
 
-LIBFT = ./libft/libft.a
-MINILIBX = ./minilibx-linux/libmlx.a
+LIBFT = libft/libft.a
+MLX = ./minilibx-linux/libmlx_Linux.a
 
-SRCS = 	so_long.c \
-		verif.c \
-		errors.c \
-		utils.c \
-		utils2.c \
+SRCS = 	so_long.c\
+		utils.c\
+		utils2.c\
+		errors.c\
+		verif.c\
 
 OBJS = $(SRCS:%.c=%.o)
-BONUS_OBJS = $(BONUS_SRCS:%.c=%.o)
+OBJS_BONUS = $(SRCS_BONUS:%.c=%.o)
 
 all: $(NAME)
 
 $(LIBFT):
 	@$(MAKE) -C ./libft
 
-$(MINILIBX):
+$(MLX):
 	@$(MAKE) -C ./minilibx-linux
 
-$(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MINILIBX) $(MFLAGS) -o $(NAME)
 
-bonus: $(BONUS_OBJS) $(LIBFT) $(MINILIBX)
-	@$(CC) $(CFLAGS) $(BONUS_OBJS) $(LIBFT) $(MINILIBX) $(MFLAGS) -o $(BONUS)
+$(NAME): $(OBJS) $(LIBFT) $(MLX)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX) $(MFLAGS) -o $(NAME)
+
+bonus: $(OBJS_BONUS) $(LIBFT) $(MLX)
+	@$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIBFT) $(MLX) $(MFLAGS) -o $(NAME_BONUS)
 
 clean:
 	@$(MAKE) clean -C ./libft
 	@$(MAKE) clean -C ./minilibx-linux
-	@$(RM) $(OBJS) $(BONUS_OBJS)
+	@$(RM) $(OBJS)
+	@$(RM) $(NAME)
 
-fclean: clean
+clean_bonus:
+	@$(MAKE) clean -C ./libft
+	@$(MAKE) clean -C ./minilibx-linux
+	@$(RM) $(OBJS_BONUS)
+	@$(RM) $(NAME_BONUS)
+
+fclean: clean clean_bonus
 	@$(MAKE) fclean -C ./libft
 	@$(MAKE) clean -C ./minilibx-linux
-	@$(RM) $(NAME) $(BONUS)
+	@$(RM) $(NAME)
+	@$(RM) $(NAME_BONUS)
 
 re: fclean all

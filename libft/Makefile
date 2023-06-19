@@ -10,11 +10,17 @@
 #                                                                              #
 # **************************************************************************** #
 
+NAME = libft.a
+
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+
 SRC = ft_isalnum.c \
 		ft_isalpha.c \
 		ft_isdigit.c \
 		ft_isprint.c \
 		ft_isascii.c \
+		ft_isalnum.c \
 		ft_strlen.c \
 		ft_memset.c \
 		ft_bzero.c \
@@ -65,21 +71,15 @@ SRC = ft_isalnum.c \
 
 OBJ = ${SRC:.c=.o}
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
-
-NAME = libft.a
-
 all: ${NAME}
 
 $(NAME): ${OBJ}
-	ar rcs ${NAME} ${OBJ}
-	ranlib ${NAME}
+	ar -rcs ${NAME} ${OBJ}
 
 clean:
-	rm -rf ${OBJ}
+	@$(RM) $(OBJ)
 
 fclean: clean
-	rm -rf ${NAME}
+	@$(RM) $(NAME)
 
 re: fclean all
