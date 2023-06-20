@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:05 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/15 15:56:00 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:21:18 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 int	verify(t_data *data, char *str)
 {
-	int	i;
+	int		i;
+	t_types	types;
 
+	type0(&types);
 	(void)data;
 	i = (int)ft_strlen(str) - 4;
 	if (ft_strncmp(str + i, ".ber", 4) != 0 || !str)
@@ -27,8 +29,10 @@ int	verify(t_data *data, char *str)
 	get_y(data, str);
 	if (get_x(data, str, 0) == -1)
 		return (err_picker('r'));
-	if (finder(data) == -1)
+	if (finder(&types, data) == -1)
 		return (-1);
+	pathcheck(&types, data, data->px, data->py);
+
 	return (0);
 }
 
@@ -38,15 +42,16 @@ void	type0(t_types *types)
 	types->enemy = 0;
 	types->floor = 0;
 	types->exit = 0;
+	types->exitcheck = 0;
 	types->wall = 0;
 	types->clct = 0;
+	types->clctcheck = 0;
 }
 
-int	finder(t_data *data)
+int	finder(t_types *types, t_data *data)
 {
 	int		ix;
 	int		iy;
-	t_types	types;
 
 	iy = 0;
 	while (iy <= data->y)
@@ -55,18 +60,18 @@ int	finder(t_data *data)
 		while (ix <= data->x)
 		{
 			if (data->map[iy][ix] == '1')
-				types.wall++;
+				types->wall++;
 			else if (data->map[iy][ix] == 'C')
-				types.clct++;
+				types->clct++;
 			else if (data->map[iy][ix] == 'E')
-				types.exit++;
+				types->exit++;
 			else if (data->map[iy][ix] == 'P')
-				types.player++;
+				types->player++;
 			ix++;
 		}
 		iy++;
 	}
-	return (count(data, &types));
+	return (count(data, types));
 }
 
 int	count(t_data *data, t_types *types)
@@ -79,10 +84,23 @@ int	count(t_data *data, t_types *types)
 		return (err_picker('c'));
 	if (types->wall < ((2 * data->x) + (2 * data->y)))
 		return (err_picker('w'));
+	if (types->)
 	return (0);
 }
 
-int	flood(void)
+void	pathcheck(t_types *types, t_data *data, int x, int y)
 {
-	return (0);
+	if (data->map[y][x] == '1' || data->map[y][x] == '-' || !data->map[y][x])
+		return ;
+	else
+	{
+		if (data->map[y][x] == 'E')
+			types->exitcheck++;
+		if (data->map[y][x] == 'C')
+			types->clctcheck++;
+	}
+	pathcheck(types, data, x + 1, y);
+	pathcheck(types, data, x, y + 1);
+	pathcheck(types, data, x - 1, y);
+	pathcheck(types, data, x, y - 1);
 }

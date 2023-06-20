@@ -6,28 +6,28 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:34:20 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/19 14:18:33 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/19 15:16:43 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_print_array(char **array)
+void	ft_print_array(t_data *data, char **array)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	while (array[i][j] != '\0' && array[i])
+	while (i <= data->y)
 	{
-		while (array[i][j] != '\0')
+		while (array && array[i][j] != '\0')
 		{
-			ft_printf("%c ", array[i][j]);
+			ft_printf("%c", array[i][j]);
 			j++;
 		}
-		j = 0;
 		i++;
+		j = 0;
 		ft_printf("\n");
 	}
 }

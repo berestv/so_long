@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:17 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/15 14:35:35 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:28:47 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ int	err_picker(char type)
 		ft_putstr_fd("Error\nWrong map format. Use [path]/[mapname].ber\n", 2);
 	else if (type == '/')
 		ft_putstr_fd("Error\nFile not found. Use [path]/[mapname].ber\n", 2);
+	else if (type == 'P')
+		ft_putstr_fd("Error\nThe player is unable to exit the map.\n", 2);
+	else if (type == 'C')
+		ft_putstr_fd("Error\nInaccessible collectible(s).\n", 2);
 	return (-1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:32 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/19 14:21:18 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/19 17:15:00 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@ void	get_y(t_data *data, char *path)
 	char	*line;
 
 	initialize(data);
+	data->fd = open(path, O_RDONLY);
+	data->x = (int)ft_strlen(get_next_line(data->fd));
+	close(data->fd);
 	data->fd = open(path, O_RDONLY);
 	while (1)
 	{
@@ -34,11 +37,8 @@ int	get_x(t_data *data, char *path, int y)
 {
 	int	len;
 
-	data->fd = open(path, O_RDONLY);
-	data->x = ft_strlen(get_next_line(data->fd));
 	len = data->x;
-	close(data->fd);
-	data->map = malloc((sizeof(char **) * data->x) * data->y);
+	data->map = malloc((sizeof(char) * data->x) * data->y);
 	data->fd = open(path, O_RDONLY);
 	while (y <= data->y)
 	{
@@ -49,7 +49,7 @@ int	get_x(t_data *data, char *path, int y)
 			return (-1);
 		y++;
 	}
-	ft_print_array(data->map);
+	ft_print_array(data, data->map);
 	return (close(data->fd));
 }
 
