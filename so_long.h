@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:12 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/20 17:15:57 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/21 15:56:46 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_types
 	int		wall;
 	int		clct;
 	int		clctcheck;
+	int		trigger;
 
 }			t_types;
 
@@ -63,16 +64,18 @@ int		int_err_handler(int n);
 int		verify(t_data *mlx, char *str);
 
 // ----------- VERIFS ----------- //
+int		count(t_types *types);
 int		finder(t_types *types, t_data *data);
-int		count(t_data *data, t_types *types);
 
 // ----------- UTILS -----------  //
 void	type0(t_types *types);
 void	initialize(t_data *data);
 void	free_2d(char **array, int size);
 void	get_y(t_data *data, char *path);
-void	pathcheck(t_types *types, t_data *data, int x, int y);
 int		get_x(t_data *data, char *path, int y);
+void	pathcheck(t_types *types, t_data *data, int x, int y);
+void	wall_handler(t_types *types, t_data *data, int x, int y);
+void	player_handler(t_types *types, t_data *data, int x, int y);
 
 // ----------- TEMP -----------  //
 void	ft_print_array(t_data *data, char **array);

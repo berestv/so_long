@@ -6,12 +6,11 @@
 /*   By: bbento-e <bbento-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:34:39 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/19 17:01:41 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/21 14:08:25 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "../so_long.h"
 
 static char	*ft_get_line(int fd, char *buffer, char *stash)
 {

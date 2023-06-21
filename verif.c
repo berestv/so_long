@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:05 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/20 17:21:18 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/21 16:05:20 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	verify(t_data *data, char *str)
 	t_types	types;
 
 	type0(&types);
-	(void)data;
 	i = (int)ft_strlen(str) - 4;
 	if (ft_strncmp(str + i, ".ber", 4) != 0 || !str)
 		return (err_picker('f'));
@@ -31,8 +30,10 @@ int	verify(t_data *data, char *str)
 		return (err_picker('r'));
 	if (finder(&types, data) == -1)
 		return (-1);
-	pathcheck(&types, data, data->px, data->py);
-
+	free_2d(data->map, data->y);
+	if (get_x(data, str, 0) == -1)
+		return (err_picker('r'));
+	ft_print_array(data, data->map);
 	return (0);
 }
 
@@ -46,6 +47,7 @@ void	type0(t_types *types)
 	types->wall = 0;
 	types->clct = 0;
 	types->clctcheck = 0;
+	types->trigger = 0;
 }
 
 int	finder(t_types *types, t_data *data)
@@ -57,24 +59,25 @@ int	finder(t_types *types, t_data *data)
 	while (iy <= data->y)
 	{
 		ix = 0;
-		while (ix <= data->x)
+		while (ix < data->x)
 		{
-			if (data->map[iy][ix] == '1')
-				types->wall++;
+			if ((iy == 0 || iy == data->y) || (ix == 0 || ix == (data->x - 1)))
+				wall_handler(types, data, ix, iy);
 			else if (data->map[iy][ix] == 'C')
 				types->clct++;
 			else if (data->map[iy][ix] == 'E')
 				types->exit++;
 			else if (data->map[iy][ix] == 'P')
-				types->player++;
+				player_handler(types, data, ix, iy);
 			ix++;
 		}
 		iy++;
 	}
-	return (count(data, types));
+	pathcheck(types, data, data->px, data->py);
+	return (count(types));
 }
 
-int	count(t_data *data, t_types *types)
+int	count(t_types *types)
 {
 	if (types->player != 1)
 		return (err_picker('p'));
@@ -82,15 +85,18 @@ int	count(t_data *data, t_types *types)
 		return (err_picker('e'));
 	if (types->clct < 1)
 		return (err_picker('c'));
-	if (types->wall < ((2 * data->x) + (2 * data->y)))
+	if (types->trigger == -1)
 		return (err_picker('w'));
-	if (types->)
+	if (types->exit != types->exitcheck)
+		return (err_picker('E'));
+	if (types->clct != types->clctcheck)
+		return (err_picker('C'));
 	return (0);
 }
 
 void	pathcheck(t_types *types, t_data *data, int x, int y)
 {
-	if (data->map[y][x] == '1' || data->map[y][x] == '-' || !data->map[y][x])
+	if (!data->map[y][x] || data->map[y][x] == '1' || data->map[y][x] == '-')
 		return ;
 	else
 	{
@@ -98,9 +104,10 @@ void	pathcheck(t_types *types, t_data *data, int x, int y)
 			types->exitcheck++;
 		if (data->map[y][x] == 'C')
 			types->clctcheck++;
+		data->map[y][x] = '-';
+		pathcheck(types, data, x + 1, y);
+		pathcheck(types, data, x - 1, y);
+		pathcheck(types, data, x, y + 1);
+		pathcheck(types, data, x, y - 1);
 	}
-	pathcheck(types, data, x + 1, y);
-	pathcheck(types, data, x, y + 1);
-	pathcheck(types, data, x - 1, y);
-	pathcheck(types, data, x, y - 1);
 }

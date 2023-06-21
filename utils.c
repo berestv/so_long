@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:32 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/19 17:15:00 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/21 16:03:41 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	get_y(t_data *data, char *path)
 
 	initialize(data);
 	data->fd = open(path, O_RDONLY);
-	data->x = (int)ft_strlen(get_next_line(data->fd));
+	data->x = ft_strlen(ft_strtrim(get_next_line(data->fd), "\n"));
 	close(data->fd);
 	data->fd = open(path, O_RDONLY);
 	while (1)
@@ -29,6 +29,7 @@ void	get_y(t_data *data, char *path)
 		data->y++;
 		free(line);
 	}
+	data->y--;
 	close(data->fd);
 	free(line);
 }
@@ -43,21 +44,23 @@ int	get_x(t_data *data, char *path, int y)
 	while (y <= data->y)
 	{
 		data->map[y] = ft_strtrim(get_next_line(data->fd), "\n");
+		len = ft_strlen(data->map[y]);
 		if (!data->map[y])
 			break ;
 		if (data->x != len || data->x <= 0)
 			return (-1);
 		y++;
 	}
-	ft_print_array(data, data->map);
 	return (close(data->fd));
 }
 
 void	initialize(t_data *data)
 {
 	data->fd = 0;
-	data->x = -1;
-	data->y = -1;
+	data->x = 0;
+	data->y = 0;
+	data->px = 0;
+	data->py = 0;
 	data->collected = 0;
 	data->moves = 0;
 }
