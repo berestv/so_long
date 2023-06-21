@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:27 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/21 16:29:38 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/21 18:49:30 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@ int	main(int argc, char *argv[])
 		if (verify(&data, argv[1]) == -1)
 			return (0);
 		data.mlx = mlx_init();
-		data.win = mlx_new_window(data.mlx, 500, 500, "so_long");
-
+		data.win = mlx_new_window(data.mlx, (data.x * 64),
+				(data.y * 64), "so_long");
+		builder(&data);
 		mlx_loop_hook(data.mlx, &nullevent, &data);
 		mlx_key_hook(data.win, &keyhandler, &data);
 		mlx_loop(data.mlx);

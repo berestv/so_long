@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:12 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/21 15:56:46 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/21 18:34:52 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <stdlib.h>
 # include <signal.h>
 
+# define FLOOR "./img/textures/floor.xpm"
+
 typedef struct s_data
 {
 	void	*mlx;
@@ -31,6 +33,8 @@ typedef struct s_data
 	int		px;
 	int		collected;
 	int		moves;
+	int		width;
+	int		height;
 	void	*wall;
 	void	*exit;
 	void	*floor;
@@ -66,6 +70,11 @@ int		verify(t_data *mlx, char *str);
 // ----------- VERIFS ----------- //
 int		count(t_types *types);
 int		finder(t_types *types, t_data *data);
+
+// ------------ MAP ------------- //
+void	builder(t_data *data);
+void	img_init(t_data *data);
+void	populate(t_data *data);
 
 // ----------- UTILS -----------  //
 void	type0(t_types *types);

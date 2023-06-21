@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:32 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/21 16:03:41 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/21 18:44:10 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,18 @@ int	get_x(t_data *data, char *path, int y)
 
 void	initialize(t_data *data)
 {
+	int i = 64;
 	data->fd = 0;
 	data->x = 0;
 	data->y = 0;
 	data->px = 0;
 	data->py = 0;
+	data->width = 64;
+	data->height = 64;
 	data->collected = 0;
 	data->moves = 0;
+	data->floor = mlx_xpm_file_to_image(data->mlx,
+			FLOOR, &i, &i);
 }
 
 void	free_2d(char **array, int size)
