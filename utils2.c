@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:34:20 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/21 15:55:48 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/22 18:06:30 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,29 @@ void	wall_handler(t_types *types, t_data *data, int x, int y)
 		types->wall++;
 	else
 		types->trigger = -1;
+}
+
+int	next_random(unsigned int seed)
+{
+	unsigned int	multiplier;
+	unsigned int	increment;
+	unsigned int	modulus;
+
+	multiplier = 1103515245;
+	increment = 12345;
+	modulus = 2147483648;
+	seed = (multiplier * seed + increment) % modulus;
+	return ((int)seed);
+}
+
+int	rand_gen(int min, int max, unsigned int seed)
+{
+	unsigned int	range;
+	unsigned int	r_num;
+
+	if (min > max)
+		return (0);
+	range = max - min + 1;
+	r_num = next_random(seed) % range;
+	return ((int)(r_num + min));
 }
