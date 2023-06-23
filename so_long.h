@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:12 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/22 18:59:21 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/23 13:25:25 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,13 @@ typedef struct s_data
 	int		width;
 	int		height;
 	void	**wall;
-	void	*exit;
+	void	**exit;
 	void	*floor;
 	void	**clct;
-	void	*playerup;
-	void	*playerdn;
+	void	**playeru;
+	void	**playerd;
+	void	**playerl;
+	void	**playerr;
 	char	**map;
 	char	**copy;
 }			t_data;
@@ -74,15 +76,21 @@ void	builder(t_data *data);
 void	populate(t_data *data);
 void	img_init(t_data *data);
 void	wall_init(t_data *data);
+void	exit_init(t_data *data);
+void	exit_sprite(t_data *data);
+void	player_sprite(t_data *data);
+void	player_init_ud(t_data *data);
+void	player_init_lr(t_data *data);
 void	img_picker(t_data *data, int x, int y);
 
 // ----------- UTILS -----------  //
+int		contradict(void);
 void	type0(t_types *types);
 void	initialize(t_data *data);
+int		next_random(unsigned int seed);
 void	free_2d(char **array, int size);
 void	get_y(t_data *data, char *path);
 int		get_x(t_data *data, char *path, int y);
-int		next_random(unsigned int seed);
 int		rand_gen(int min, int max, unsigned int seed);
 void	pathcheck(t_types *types, t_data *data, int x, int y);
 void	wall_handler(t_types *types, t_data *data, int x, int y);
@@ -92,6 +100,8 @@ void	player_handler(t_types *types, t_data *data, int x, int y);
 void	ft_print_array(t_data *data, char **array);
 
 // ----------------- MACROS ----------------- //
+
+// ------------ FLOOR ------------ //
 # define FLOOR "./img/textures/floor.xpm"
 
 // ------------ WALLS ------------ //
@@ -107,14 +117,21 @@ void	ft_print_array(t_data *data, char **array);
 # define WALL9 "./img/textures/wall9.xpm"
 
 // ----------- PLAYER ----------- //
-# define PLYR0 "./img/sprites/spaceship0.xpm"
-# define PLYR1 "./img/sprites/spaceship1.xpm"
-# define PLYR2 "./img/sprites/spaceship2.xpm"
-# define PLYR3 "./img/sprites/spaceship3.xpm"
-# define PLYR4 "./img/sprites/spaceship4.xpm"
+# define PLRU0 "./img/sprites/spaceship0.xpm"
+# define PLRU1 "./img/sprites/spaceship1.xpm"
+# define PLRU2 "./img/sprites/spaceship2.xpm"
+# define PLRU3 "./img/sprites/spaceship3.xpm"
+# define PLRU4 "./img/sprites/spaceship4.xpm"
+
+// ----------- EXIT ------------ //
+# define EXIT0 "./img/sprites/exit0.xpm"
+# define EXIT1 "./img/sprites/exit1.xpm"
+# define EXIT2 "./img/sprites/exit2.xpm"
+# define EXIT3 "./img/sprites/exit3.xpm"
+# define EXIT4 "./img/sprites/exit4.xpm"
 
 // ---------- COLLECT ---------- //
-# define CLCT0 "./img/textures/clct.xpm"
-# define CLCT1 "./img/textures/clct_flip.xpm"
+# define COLL0 "./img/textures/coll0.xpm"
+# define COLL1 "./img/textures/coll1.xpm"
 
 #endif

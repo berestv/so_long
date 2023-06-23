@@ -15,6 +15,8 @@ SRCS = 	so_long.c\
 		errors.c\
 		verif.c\
 		map_ops.c\
+		imgs_init.c\
+		sprites.c\
 
 OBJS = $(SRCS:%.c=%.o)
 OBJS_BONUS = $(SRCS_BONUS:%.c=%.o)
