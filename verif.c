@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:05 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/26 18:31:42 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/26 19:51:48 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,14 +107,14 @@ void	pathcheck(t_types *types, t_data *data, int x, int y)
 		return ;
 	else
 	{
-		if (data->map[y][x] == 'E')
+		if (data->map[y][x] == 'C')
+			types->clctcheck++;
+		if (data->map[y][x] == 'E' && types->clct == types->clctcheck)
 		{
 			types->exitcheck++;
 			data->ey = y;
 			data->ex = x;
 		}
-		if (data->map[y][x] == 'C')
-			types->clctcheck++;
 		data->map[y][x] = '-';
 		pathcheck(types, data, x + 1, y);
 		pathcheck(types, data, x - 1, y);

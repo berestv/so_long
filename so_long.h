@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:12 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/26 19:11:51 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/26 19:49:08 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	unknown_handler(t_types *types, char c);
 int		verify(t_data *data, t_types *types, char *str);
 
 // ------------ MAP ------------- //
+int		end(t_data *data);
 void	builder(t_data *data);
 void	populate(t_data *data);
 void	img_init(t_data *data);

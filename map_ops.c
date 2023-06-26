@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 16:35:23 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/26 15:44:15 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/26 19:52:43 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	populate(t_data *data)
 	int	y;
 
 	y = 0;
-	while (y < data->y)
+	while (y <= data->y)
 	{
 		x = 0;
 		while (x < data->x)

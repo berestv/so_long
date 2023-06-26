@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:27 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/26 19:17:27 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/26 19:53:46 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ int	updates(t_data *data)
 int	key_handler(int keysym, t_data *data)
 {
 	if (keysym == XK_Escape)
-		mlx_destroy_window(data->mlx, data->win);
-	if (keysym == XK_Escape)
-		mlx_destroy_window(data->mlx, data->win);
+		end(data);
 	return (0);
 }
 
@@ -86,7 +84,7 @@ int	main(int argc, char *argv[])
 			return (0);
 		data.mlx = mlx_init();
 		data.win = mlx_new_window(data.mlx, (data.x * 64),
-				(data.y * 64), "so_long");
+				((data.y + 1) * 64), "so_long");
 		builder(&data);
 		mlx_loop_hook(data.mlx, &updates, &data);
 		mlx_hook(data.mlx, DestroyNotify, StructureNotifyMask, &end, &data);
@@ -97,5 +95,4 @@ int	main(int argc, char *argv[])
 	}
 	else
 		return (int_err_handler(0));
-	return (0);
 }
