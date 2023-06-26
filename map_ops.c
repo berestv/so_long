@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 16:35:23 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/23 13:21:51 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/26 15:44:15 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,28 +38,28 @@ void	populate(t_data *data)
 
 void	img_picker(t_data *data, int x, int y)
 {
-	static int	s;
-	int			r;
+	int	s;
+	int	r;
 
 
-	s = next_random(data->x * data->y);
+	s = next_random(data->x + data->y + x + y);
 	r = rand_gen(0, 9, s);
 	if (data->map[y][x] == '0')
 		mlx_put_image_to_window(data->mlx, data->win,
 			data->floor, (x * 64), (y * 64));
-	if (data->map[y][x] == '1')
+	else if (data->map[y][x] == '1')
 		mlx_put_image_to_window(data->mlx, data->win,
 			data->wall[r], (x * 64), (y * 64));
-	if (data->map[y][x] == 'P')
+	else if (data->map[y][x] == 'P')
 		mlx_put_image_to_window(data->mlx, data->win,
 			data->playeru[0], (x * 64), (y * 64));
-	if (data->map[y][x] == 'C')
+	else if (data->map[y][x] == 'C')
 	{
 		r = contradict();
 		mlx_put_image_to_window(data->mlx, data->win,
 			data->clct[r], (x * 64), (y * 64));
 	}
-	if (data->map[y][x] == 'E')
+	else if (data->map[y][x] == 'E')
 		mlx_put_image_to_window(data->mlx, data->win,
 			data->exit[0], (x * 64), (y * 64));
 	s++;

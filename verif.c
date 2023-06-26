@@ -6,18 +6,17 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:05 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/21 16:05:20 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/26 18:12:34 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	verify(t_data *data, char *str)
+int	verify(t_data *data, t_types *types, char *str)
 {
 	int		i;
-	t_types	types;
 
-	type0(&types);
+	type0(types);
 	i = (int)ft_strlen(str) - 4;
 	if (ft_strncmp(str + i, ".ber", 4) != 0 || !str)
 		return (err_picker('f'));
@@ -28,12 +27,14 @@ int	verify(t_data *data, char *str)
 	get_y(data, str);
 	if (get_x(data, str, 0) == -1)
 		return (err_picker('r'));
-	if (finder(&types, data) == -1)
+	if (finder(types, data) == -1)
 		return (-1);
+	ft_print_array(data, data->map); // DEL
+	ft_printf("\n\n\n");			   // DEL
 	free_2d(data->map, data->y);
 	if (get_x(data, str, 0) == -1)
 		return (err_picker('r'));
-	ft_print_array(data, data->map);
+	ft_print_array(data, data->map); // DEL
 	return (0);
 }
 
@@ -48,6 +49,7 @@ void	type0(t_types *types)
 	types->clct = 0;
 	types->clctcheck = 0;
 	types->trigger = 0;
+	types->unknown = 0;
 }
 
 int	finder(t_types *types, t_data *data)
@@ -69,6 +71,8 @@ int	finder(t_types *types, t_data *data)
 				types->exit++;
 			else if (data->map[iy][ix] == 'P')
 				player_handler(types, data, ix, iy);
+			else
+				unknown_handler(types, data->map[iy][ix]);
 			ix++;
 		}
 		iy++;
@@ -91,6 +95,9 @@ int	count(t_types *types)
 		return (err_picker('E'));
 	if (types->clct != types->clctcheck)
 		return (err_picker('C'));
+	if (types->unknown == -1)
+		return (err_picker('I'));
+
 	return (0);
 }
 
@@ -101,7 +108,11 @@ void	pathcheck(t_types *types, t_data *data, int x, int y)
 	else
 	{
 		if (data->map[y][x] == 'E')
+		{
 			types->exitcheck++;
+			data->ey = y;
+			data->ex = x;
+		}
 		if (data->map[y][x] == 'C')
 			types->clctcheck++;
 		data->map[y][x] = '-';

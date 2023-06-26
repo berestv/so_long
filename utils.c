@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:32 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/22 11:56:28 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/26 18:13:58 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,13 @@ void	initialize(t_data *data)
 	data->y = 0;
 	data->px = 0;
 	data->py = 0;
+	data->ex = 0;
+	data->ey = 0;
 	data->width = 64;
 	data->height = 64;
 	data->collected = 0;
 	data->moves = 0;
+	data->dir = 'U';
 }
 
 void	free_2d(char **array, int size)
@@ -78,4 +81,10 @@ void	free_2d(char **array, int size)
 		i++;
 	}
 	free(array);
+}
+
+void	unknown_handler(t_types *types, char c)
+{
+	if (c != '0' && c != '1' && c != 'P' && c != 'E' && c != 'C')
+		types->unknown = -1;
 }

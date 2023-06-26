@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:34:20 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/22 18:06:30 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/26 15:41:49 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ int	next_random(unsigned int seed)
 	unsigned int	increment;
 	unsigned int	modulus;
 
-	multiplier = 1103515245;
+	multiplier = 13515245;
 	increment = 12345;
-	modulus = 2147483648;
+	modulus = 21474848;
 	seed = (multiplier * seed + increment) % modulus;
 	return ((int)seed);
 }
@@ -67,6 +67,7 @@ int	rand_gen(int min, int max, unsigned int seed)
 
 	if (min > max)
 		return (0);
+	min++;
 	range = max - min + 1;
 	r_num = next_random(seed) % range;
 	return ((int)(r_num + min));

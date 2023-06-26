@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:17 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/21 11:58:08 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/26 18:11:07 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	err_picker(char type)
 		ft_putstr_fd("Error\nThe player is unable to exit the map.\n", 2);
 	else if (type == 'C')
 		ft_putstr_fd("Error\nThere's at least one unreachable collectible.\n", 2);
+	else if (type == 'I')
+		ft_putstr_fd("Error\nInvalid characters found.\n", 2);
 	return (-1);
 }
 
