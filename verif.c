@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:05 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/26 18:12:34 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/26 18:31:42 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,12 @@ int	count(t_types *types)
 		return (err_picker('C'));
 	if (types->unknown == -1)
 		return (err_picker('I'));
-
 	return (0);
 }
 
 void	pathcheck(t_types *types, t_data *data, int x, int y)
 {
+	data->topick = types->clct;
 	if (!data->map[y][x] || data->map[y][x] == '1' || data->map[y][x] == '-')
 		return ;
 	else

@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:12 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/26 18:14:07 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/26 19:11:51 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ typedef struct s_data
 	int		px;
 	int		ex;
 	int		ey;
-	int		collected;
+	int		picked;
+	int		topick;
 	int		moves;
 	int		width;
 	int		height;
@@ -45,7 +46,6 @@ typedef struct s_data
 	void	**playerr;
 	char	dir;
 	char	**map;
-	char	**copy;
 }			t_data;
 
 typedef struct s_types
@@ -84,13 +84,14 @@ void	player_sprite(t_data *data);
 void	player_init_ud(t_data *data);
 void	player_init_lr(t_data *data);
 void	img_picker(t_data *data, int x, int y);
+void	destroy_img_array(t_data *data, void **array);
 
 // ---------- SPRITES ----------- //
+void	exit_sprite(t_data *data);
 void	player_sprite_u(t_data *data);
 void	player_sprite_d(t_data *data);
 void	player_sprite_l(t_data *data);
 void	player_sprite_r(t_data *data);
-void	exit_sprite(t_data *data);
 
 // ----------- UTILS -----------  //
 int		contradict(void);
