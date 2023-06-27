@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 16:35:23 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/26 19:52:43 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/27 20:38:04 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,17 @@ int	contradict(void)
 	else
 		i = 0;
 	return (i);
+}
+
+int	rand_gen(int min, int max, unsigned int seed)
+{
+	unsigned int	range;
+	unsigned int	r_num;
+
+	if (min > max)
+		return (0);
+	min++;
+	range = max - min + 1;
+	r_num = next_random(seed) % range;
+	return ((int)(r_num + min));
 }

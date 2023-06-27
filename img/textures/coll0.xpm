@@ -2,13 +2,13 @@
 static char *_be287b6f36c484baef085b061b0092bXyYoDGcrmqLfnnEH[] = {
 /* columns rows colors chars-per-pixel */
 "64 64 143 2 ",
-"   c #160C1E",
+"   c #010300",
 ".  c #001408",
 "X  c #000A19",
 "o  c #100317",
 "O  c #1C0A17",
-"+  c #160C1E",
-"@  c #160C1E",
+"+  c #120418",
+"@  c #160A1D",
 "#  c #001214",
 "$  c #001F1C",
 "%  c #1A1116",

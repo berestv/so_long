@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:05 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/27 16:35:29 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/27 22:20:57 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,12 @@ int	verify(t_data *data, t_types *types, char *str)
 		return (err_picker('r'));
 	if (finder(types, data) == -1)
 		return (-1);
-	//ft_print_array(data, data->map); // DEL
-	//ft_printf("\n\n\n");			   // DEL
+	ft_printf("\n\n\n");			   // DEL
 	free_2d(data->map, data->y);
 	if (get_x(data, str, 0) == -1)
 		return (err_picker('r'));
-	//ft_print_array(data, data->map); // DEL
+	ft_print_array(data, data->map); // DEL
 	return (0);
-}
-
-void	type0(t_types *types)
-{
-	types->player = 0;
-	types->exit = 0;
-	types->exitcheck = 0;
-	types->wall = 0;
-	types->clct = 0;
-	types->clctcheck = 0;
-	types->trigger = 0;
-	types->unknown = 0;
 }
 
 int	finder(t_types *types, t_data *data)
@@ -75,12 +62,13 @@ int	finder(t_types *types, t_data *data)
 		}
 		iy++;
 	}
-	pathcheck(types, data, data->px, data->py);
-	return (count(types));
+	return (count(types, data));
 }
 
-int	count(t_types *types)
+int	count(t_types *types, t_data *data)
 {
+	coll_check(types, data, data->px, data->py);
+	pathcheck(types, data, data->px, data->py);
 	if (types->player != 1)
 		return (err_picker('p'));
 	if (types->exit != 1)
@@ -105,18 +93,32 @@ void	pathcheck(t_types *types, t_data *data, int x, int y)
 		return ;
 	else
 	{
-		if (data->map[y][x] == 'C')
-			types->clctcheck++;
 		if (data->map[y][x] == 'E' && types->clct == types->clctcheck)
 		{
 			types->exitcheck++;
-			data->ey = y;
-			data->ex = x;
+			exit_coord(data, x, y);
 		}
 		data->map[y][x] = '-';
 		pathcheck(types, data, x + 1, y);
 		pathcheck(types, data, x - 1, y);
 		pathcheck(types, data, x, y + 1);
 		pathcheck(types, data, x, y - 1);
+	}
+}
+
+void	coll_check(t_types *types, t_data *data, int x, int y)
+{
+	if (!data->map[y][x] || data->map[y][x] == '1' || data->map[y][x] == '-'
+		|| data->map[y][x] == 'E' || data->map[y][x] == '?')
+		return ;
+	else
+	{
+		if (data->map[y][x] == 'C')
+			types->clctcheck++;
+		data->map[y][x] = '?';
+		coll_check(types, data, x + 1, y);
+		coll_check(types, data, x - 1, y);
+		coll_check(types, data, x, y + 1);
+		coll_check(types, data, x, y - 1);
 	}
 }

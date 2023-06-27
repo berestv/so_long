@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:34:20 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/27 16:31:56 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/27 21:03:20 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,12 @@ void	wall_handler(t_types *types, t_data *data, int x, int y)
 		types->trigger = -1;
 }
 
+void	exit_coord(t_data *data, int x, int y)
+{
+	data->ex = x;
+	data->ey = y;
+}
+
 int	next_random(unsigned int seed)
 {
 	unsigned int	multiplier;
@@ -58,17 +64,4 @@ int	next_random(unsigned int seed)
 	modulus = 21474848;
 	seed = (multiplier * seed + increment) % modulus;
 	return ((int)seed);
-}
-
-int	rand_gen(int min, int max, unsigned int seed)
-{
-	unsigned int	range;
-	unsigned int	r_num;
-
-	if (min > max)
-		return (0);
-	min++;
-	range = max - min + 1;
-	r_num = next_random(seed) % range;
-	return ((int)(r_num + min));
 }

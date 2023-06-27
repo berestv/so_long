@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:12 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/27 18:15:47 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/27 22:20:47 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_types
 	int		player;
 	int		exit;
 	int		exitcheck;
+	int		exit_trigg;
 	int		wall;
 	int		clct;
 	int		clctcheck;
@@ -66,26 +67,23 @@ int		err_picker(char type);
 int		int_err_handler(int n);
 
 // ----------- CHECKS ----------- //
-int		count(t_types *types);
+int		count(t_types *types, t_data *data);
 int		finder(t_types *types, t_data *data);
 void	unknown_handler(t_types *types, char c);
 int		verify(t_data *data, t_types *types, char *str);
+void	exit_coord(t_data *data, int x, int y);
 
 // ------------ MAP ------------- //
 int		end(t_data *data);
+int		updates(t_data *data);
 void	builder(t_data *data);
 void	populate(t_data *data);
 void	img_init(t_data *data);
 void	wall_init(t_data *data);
 void	exit_init(t_data *data);
-void	exit_sprite(t_data *data);
-void	player_sprite(t_data *data);
-void	mvmnt(t_data *data, int key);
 void	player_init_ud(t_data *data);
 void	player_init_lr(t_data *data);
-void	mvmnt2(t_data *data, int key);
 void	destroy_img_array(t_data *data);
-int		valid_mvmnt(t_data *data, int x, int y);
 void	img_picker(t_data *data, int x, int y);
 
 // ---------- SPRITES ----------- //
@@ -94,6 +92,10 @@ void	player_sprite_u(t_data *data);
 void	player_sprite_d(t_data *data);
 void	player_sprite_l(t_data *data);
 void	player_sprite_r(t_data *data);
+void	mvmnt(t_data *data, int key);
+void	mvmnt2(t_data *data, int key);
+void	smoothen(t_data *data, int x, int y);
+int		valid_mvmnt(t_data *data, int x, int y);
 
 // ----------- UTILS -----------  //
 int		contradict(void);
@@ -105,6 +107,7 @@ void	get_y(t_data *data, char *path);
 int		get_x(t_data *data, char *path, int y);
 int		rand_gen(int min, int max, unsigned int seed);
 void	pathcheck(t_types *types, t_data *data, int x, int y);
+void	coll_check(t_types *types, t_data *data, int x, int y);
 void	wall_handler(t_types *types, t_data *data, int x, int y);
 void	player_handler(t_types *types, t_data *data, int x, int y);
 

@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:32 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/27 16:46:26 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/27 18:37:47 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	get_x(t_data *data, char *path, int y)
 {
 	int	len;
 
-	len = data->x;
 	data->map = malloc((sizeof(char *) * data->x) * data->y);
 	data->fd = open(path, O_RDONLY);
 	while (y <= data->y)
@@ -76,6 +75,19 @@ void	initialize(t_data *data)
 	data->playerl = malloc(sizeof(void *) * 5);
 	data->playerr = malloc(sizeof(void *) * 5);
 	data->dir = 'U';
+}
+
+void	type0(t_types *types)
+{
+	types->player = 0;
+	types->exit = 0;
+	types->exitcheck = 0;
+	types->exit_trigg = 0;
+	types->wall = 0;
+	types->clct = 0;
+	types->clctcheck = 0;
+	types->trigger = 0;
+	types->unknown = 0;
 }
 
 int	free_2d(char **array, int size)
