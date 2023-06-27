@@ -6,41 +6,35 @@
 /*   By: bbento-e <bbento-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 14:30:48 by bbento-e          #+#    #+#             */
-/*   Updated: 2022/11/22 12:15:29 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/27 16:11:33 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *str, unsigned int start, size_t len)
 {
-	char	*sub;
-	size_t	a;
 	size_t	i;
+	size_t	j;
+	char	*substr;
 
-	i = 0;
-	a = 0;
-	sub = malloc(sizeof(char) * (len + 1));
-	if (!s)
-		return (NULL);
-	if (!sub)
-		return (NULL);
-	while (s[i])
+	i = start;
+	j = 0;
+	if (!str)
+		return (0);
+	if (start >= ft_strlen((char *)str))
 	{
-		if (i >= start && a < len)
-		{
-			sub[a] = s[i];
-			a++;
-		}
-		i++;
+		substr = malloc(sizeof(char) * 1);
+		if (!substr)
+			return (0);
+		substr[0] = 0;
+		return (substr);
 	}
-	sub[a] = '\0';
-	return (sub);
+	substr = malloc(sizeof(char) * len + 1);
+	if (!substr)
+		return (0);
+	while (str[i] && j < len)
+		substr[j++] = str[i++];
+	substr[j] = '\0';
+	return (substr);
 }
-/* #include <stdio.h>
-int main()
-{
-	char *s = "Hello world";
-	printf("%s", ft_substr(s, 6, 5));
-	return 0;
-} */

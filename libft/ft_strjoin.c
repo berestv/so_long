@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 14:59:26 by bbento-e          #+#    #+#             */
-/*   Updated: 2022/11/22 13:41:21 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/27 16:10:13 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,24 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*aux;
-	size_t	len;
-	int		i;
-	int		a;
+	char			*join;
+	unsigned int	i;
+	unsigned int	j;
+	unsigned int	size;
 
 	i = 0;
-	a = 0;
+	j = 0;
 	if (!s1 || !s2)
 		return (0);
-	len = ft_strlen((char *)s1) + ft_strlen((char *)s2);
-	aux = malloc(sizeof(char) * (len + 1));
-	if (!aux || !s1)
+	size = ft_strlen(s1) + ft_strlen(s2);
+	join = malloc(sizeof(char) * size + 1);
+	if (!join)
 		return (0);
-	if (s1 && !s2)
-		return ((char *) s1);
-	while (s1[i])
-	{
-		aux[i] = s1[i];
-		i++;
-	}
-	while (s2[a])
-		aux[i++] = s2[a++];
-	aux[i] = '\0';
-	return (aux);
+	while (s1[j])
+		join[i++] = s1[j++];
+	j = 0;
+	while (s2[j])
+		join[i++] = s2[j++];
+	join[i] = '\0';
+	return (join);
 }
-/* #include <stdio.h>
-int main()
-{
-	char *s1 = "Hello";
-	char *s2 = " world";
-	printf("%s", ft_straoin(s1, s2));
-	return 0;
-} */

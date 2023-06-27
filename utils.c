@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:32 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/26 19:45:55 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/27 16:46:26 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	get_y(t_data *data, char *path)
 
 	initialize(data);
 	data->fd = open(path, O_RDONLY);
-	data->x = ft_strlen(ft_strtrim(get_next_line(data->fd), "\n"));
+	data->x = (int)ft_strlen(ft_strtrim(get_next_line(data->fd), "\n"));
 	close(data->fd);
 	data->fd = open(path, O_RDONLY);
 	while (1)
@@ -39,12 +39,12 @@ int	get_x(t_data *data, char *path, int y)
 	int	len;
 
 	len = data->x;
-	data->map = malloc((sizeof(char) * data->x) * data->y);
+	data->map = malloc((sizeof(char *) * data->x) * data->y);
 	data->fd = open(path, O_RDONLY);
 	while (y <= data->y)
 	{
 		data->map[y] = ft_strtrim(get_next_line(data->fd), "\n");
-		len = ft_strlen(data->map[y]);
+		len = (int)ft_strlen(data->map[y]);
 		if (!data->map[y])
 			break ;
 		if (data->x != len || data->x <= 0)
@@ -68,20 +68,30 @@ void	initialize(t_data *data)
 	data->picked = 0;
 	data->topick = 0;
 	data->moves = 0;
+	data->clct = malloc(sizeof(void **) * 2);
+	data->wall = malloc(sizeof(void *) * 10);
+	data->exit = malloc(sizeof(void *) * 5);
+	data->playeru = malloc(sizeof(void *) * 5);
+	data->playerd = malloc(sizeof(void *) * 5);
+	data->playerl = malloc(sizeof(void *) * 5);
+	data->playerr = malloc(sizeof(void *) * 5);
 	data->dir = 'U';
 }
 
-void	free_2d(char **array, int size)
+int	free_2d(char **array, int size)
 {
 	int	i;
 
 	i = 0;
-	while (i < size)
+	if (!array)
+		return (-1);
+	while (i <= size)
 	{
 		free(array[i]);
 		i++;
 	}
 	free(array);
+	return (0);
 }
 
 void	unknown_handler(t_types *types, char c)

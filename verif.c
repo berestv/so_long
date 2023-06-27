@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:05 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/26 19:51:48 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/27 16:35:29 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,18 @@ int	verify(t_data *data, t_types *types, char *str)
 		return (err_picker('r'));
 	if (finder(types, data) == -1)
 		return (-1);
-	ft_print_array(data, data->map); // DEL
-	ft_printf("\n\n\n");			   // DEL
+	//ft_print_array(data, data->map); // DEL
+	//ft_printf("\n\n\n");			   // DEL
 	free_2d(data->map, data->y);
 	if (get_x(data, str, 0) == -1)
 		return (err_picker('r'));
-	ft_print_array(data, data->map); // DEL
+	//ft_print_array(data, data->map); // DEL
 	return (0);
 }
 
 void	type0(t_types *types)
 {
 	types->player = 0;
-	types->enemy = 0;
-	types->floor = 0;
 	types->exit = 0;
 	types->exitcheck = 0;
 	types->wall = 0;

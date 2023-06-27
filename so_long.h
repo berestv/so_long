@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:12 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/26 19:49:08 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/27 18:15:47 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ typedef struct s_data
 typedef struct s_types
 {
 	int		player;
-	int		enemy;
-	int		floor;
 	int		exit;
 	int		exitcheck;
 	int		wall;
@@ -82,10 +80,13 @@ void	wall_init(t_data *data);
 void	exit_init(t_data *data);
 void	exit_sprite(t_data *data);
 void	player_sprite(t_data *data);
+void	mvmnt(t_data *data, int key);
 void	player_init_ud(t_data *data);
 void	player_init_lr(t_data *data);
+void	mvmnt2(t_data *data, int key);
+void	destroy_img_array(t_data *data);
+int		valid_mvmnt(t_data *data, int x, int y);
 void	img_picker(t_data *data, int x, int y);
-void	destroy_img_array(t_data *data, void **array);
 
 // ---------- SPRITES ----------- //
 void	exit_sprite(t_data *data);
@@ -99,7 +100,7 @@ int		contradict(void);
 void	type0(t_types *types);
 void	initialize(t_data *data);
 int		next_random(unsigned int seed);
-void	free_2d(char **array, int size);
+int		free_2d(char **array, int size);
 void	get_y(t_data *data, char *path);
 int		get_x(t_data *data, char *path, int y);
 int		rand_gen(int min, int max, unsigned int seed);
