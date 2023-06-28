@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 17:13:48 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/27 19:59:59 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/28 15:08:52 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,19 @@ void	smoothen(t_data *data, int x, int y)
 	else if (data->dir == 'R')
 		mlx_put_image_to_window(data->mlx, data->win,
 			data->playerr[0], (x * 64), (y * 64));
+}
+
+int	updates(t_data *data)
+{
+	if (data->dir == 'U')
+		player_sprite_u(data);
+	else if (data->dir == 'D')
+		player_sprite_d(data);
+	else if (data->dir == 'L')
+		player_sprite_l(data);
+	else if (data->dir == 'R')
+		player_sprite_r(data);
+	if (data->picked == data->topick)
+		exit_sprite(data);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:32 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/27 18:37:47 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/28 14:59:33 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,16 @@
 void	get_y(t_data *data, char *path)
 {
 	char	*line;
+	char	*temp;
+	char	*trim;
 
 	initialize(data);
 	data->fd = open(path, O_RDONLY);
-	data->x = (int)ft_strlen(ft_strtrim(get_next_line(data->fd), "\n"));
+	temp = get_next_line(data->fd);
+	trim = ft_strtrim(temp, "\n");
+	data->x = (int)ft_strlen(trim);
+	free(temp);
+	free(trim);
 	close(data->fd);
 	data->fd = open(path, O_RDONLY);
 	while (1)
@@ -30,19 +36,22 @@ void	get_y(t_data *data, char *path)
 		free(line);
 	}
 	data->y--;
-	close(data->fd);
 	free(line);
+	close(data->fd);
 }
 
 int	get_x(t_data *data, char *path, int y)
 {
-	int	len;
+	int		len;
+	char	*temp;
 
 	data->map = malloc((sizeof(char *) * data->x) * data->y);
 	data->fd = open(path, O_RDONLY);
 	while (y <= data->y)
 	{
-		data->map[y] = ft_strtrim(get_next_line(data->fd), "\n");
+		temp = get_next_line(data->fd);
+		data->map[y] = ft_strtrim(temp, "\n");
+		free(temp);
 		len = (int)ft_strlen(data->map[y]);
 		if (!data->map[y])
 			break ;
@@ -67,9 +76,9 @@ void	initialize(t_data *data)
 	data->picked = 0;
 	data->topick = 0;
 	data->moves = 0;
-	data->clct = malloc(sizeof(void **) * 2);
-	data->wall = malloc(sizeof(void *) * 10);
+	data->clct = malloc(sizeof(void *) * 2);
 	data->exit = malloc(sizeof(void *) * 5);
+	data->wall = malloc(sizeof(void *) * 10);
 	data->playeru = malloc(sizeof(void *) * 5);
 	data->playerd = malloc(sizeof(void *) * 5);
 	data->playerl = malloc(sizeof(void *) * 5);
@@ -104,10 +113,4 @@ int	free_2d(char **array, int size)
 	}
 	free(array);
 	return (0);
-}
-
-void	unknown_handler(t_types *types, char c)
-{
-	if (c != '0' && c != '1' && c != 'P' && c != 'E' && c != 'C')
-		types->unknown = -1;
 }

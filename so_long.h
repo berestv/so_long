@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:12 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/27 22:20:47 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/28 15:11:01 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ typedef struct s_types
 }			t_types;
 
 // ----------- ERRORS ----------- //
-void	err_handler(void);
 int		err_picker(char type);
 int		int_err_handler(int n);
 
@@ -74,17 +73,20 @@ int		verify(t_data *data, t_types *types, char *str);
 void	exit_coord(t_data *data, int x, int y);
 
 // ------------ MAP ------------- //
-int		end(t_data *data);
 int		updates(t_data *data);
-void	builder(t_data *data);
 void	populate(t_data *data);
 void	img_init(t_data *data);
 void	wall_init(t_data *data);
 void	exit_init(t_data *data);
 void	player_init_ud(t_data *data);
 void	player_init_lr(t_data *data);
-void	destroy_img_array(t_data *data);
 void	img_picker(t_data *data, int x, int y);
+
+// ------------ END ------------- //
+int		end(t_data *data);
+void	free_dp(t_data *data);
+void	destroy_img_array(t_data *data);
+
 
 // ---------- SPRITES ----------- //
 void	exit_sprite(t_data *data);

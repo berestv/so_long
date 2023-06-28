@@ -6,26 +6,11 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:27 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/27 19:46:12 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/28 15:30:28 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	updates(t_data *data)
-{
-	if (data->dir == 'U')
-		player_sprite_u(data);
-	else if (data->dir == 'D')
-		player_sprite_d(data);
-	else if (data->dir == 'L')
-		player_sprite_l(data);
-	else if (data->dir == 'R')
-		player_sprite_r(data);
-	if (data->picked == data->topick)
-		exit_sprite(data);
-	return (0);
-}
 
 int	key_handler(int key, t_data *data)
 {
@@ -63,6 +48,7 @@ int	end(t_data *data)
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
+	free_dp(data);
 	exit(0);
 }
 
@@ -90,6 +76,17 @@ void	destroy_img_array(t_data *data)
 	mlx_destroy_image(data->mlx, data->playerr[4]);
 }
 
+void	free_dp(t_data *data)
+{
+	free(data->wall);
+	free(data->clct);
+	free(data->exit);
+	free(data->playerd);
+	free(data->playeru);
+	free(data->playerl);
+	free(data->playerr);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_data	data;
@@ -99,19 +96,19 @@ int	main(int argc, char *argv[])
 	{
 		if (verify(&data, &types, argv[1]) == -1)
 		{
-			free_2d(data.map, data.y);
-			return (0);
+			free_dp(&data);
+			return (free_2d(data.map, data.y));
 		}
 		data.mlx = mlx_init();
 		data.win = mlx_new_window(data.mlx, (data.x * 64),
 				((data.y + 1) * 64), "so_long");
-		builder(&data);
+		populate(&data);
 		mlx_hook(data.win, DestroyNotify, StructureNotifyMask, &end, &data);
 		mlx_key_hook(data.win, &key_handler, &data);
 		mlx_loop_hook(data.mlx, &updates, &data);
 		mlx_loop(data.mlx);
-		free_2d(data.map, data.y);
 		end(&data);
+		free_2d(data.map, data.y);
 	}
 	else
 		return (int_err_handler(0));

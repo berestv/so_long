@@ -6,23 +6,18 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 16:35:23 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/27 20:38:04 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/28 14:03:29 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	builder(t_data *data)
-{
-	img_init(data);
-	populate(data);
-}
 
 void	populate(t_data *data)
 {
 	int	x;
 	int	y;
 
+	img_init(data);
 	y = 0;
 	while (y <= data->y)
 	{
@@ -74,6 +69,12 @@ int	contradict(void)
 	else
 		i = 0;
 	return (i);
+}
+
+void	unknown_handler(t_types *types, char c)
+{
+	if (c != '0' && c != '1' && c != 'P' && c != 'E' && c != 'C')
+		types->unknown = -1;
 }
 
 int	rand_gen(int min, int max, unsigned int seed)
