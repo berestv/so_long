@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:27 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/28 15:30:28 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/28 19:45:05 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,16 @@ int	main(int argc, char *argv[])
 {
 	t_data	data;
 	t_types	types;
+	int		i;
 
 	if (argc == 2)
 	{
-		if (verify(&data, &types, argv[1]) == -1)
+		i = verify(&data, &types, argv[1]);
+		if (i != 0)
 		{
 			free_dp(&data);
-			return (free_2d(data.map, data.y));
+			free(data.map);
+			return (0); //(free_2d(data.map, data.y));
 		}
 		data.mlx = mlx_init();
 		data.win = mlx_new_window(data.mlx, (data.x * 64),

@@ -20,7 +20,7 @@ SRCS = 	so_long.c\
 		moves.c\
 
 OBJS = $(SRCS:%.c=%.o)
-OBJS_BONUS = $(SRCS_BONUS:%.c=%.o)
+OBJS_BONUS = $(BONUS:%.c=%.o)
 
 all: $(NAME)
 
