@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:32 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/28 19:50:01 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:27:59 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,18 @@ void	get_y(t_data *data, char *path)
 	char	*temp;
 	char	*trim;
 
-	initialize(data);
 	data->fd = open(path, O_RDONLY);
 	temp = get_next_line(data->fd);
-	trim = ft_strtrim(temp, "\n");
-	data->x = (int)ft_strlen(trim);
-	free(temp);
-	free(trim);
 	close(data->fd);
+	trim = ft_strtrim(temp, "\n");
+	free(temp);
+	data->x = (int)ft_strlen(trim);
+	free(trim);
+	if (data->x == 0)
+		err_pick('r', 0);
 	data->fd = open(path, O_RDONLY);
 	while (1)
 	{
-		//data->map[data->y] = (char *)malloc((data->x + 1) * sizeof(char));
 		line = get_next_line(data->fd);
 		if (!line)
 			break ;
@@ -37,34 +37,78 @@ void	get_y(t_data *data, char *path)
 		free(line);
 	}
 	data->y--;
-	free(line);
 	close(data->fd);
+	free(line);
 }
 
 int	get_x(t_data *data, char *path, int y)
 {
 	int		len;
 	char	*temp;
-	char	*trim;
 
-	data->map = malloc((data->y - 1) * sizeof(char **));
+//	data->map = malloc(data->y * sizeof(char *));
+	data->map = ft_calloc(data->y, sizeof(char *));
 	data->fd = open(path, O_RDONLY);
 	while (y <= data->y)
 	{
 		temp = get_next_line(data->fd);
-		trim = ft_strtrim(temp, "\n");
+		data->map[y] = ft_strtrim(temp, "\n");
 		free(temp);
-		data->map[y] = trim;
-		len = ft_strlen(trim);
-		free(trim);
 		if (!data->map[y])
 			break ;
+		len = (int)ft_strlen(data->map[y]);
 		if (data->x != len || data->x <= 0)
-			return (-1);
+		{
+			free_2d(data->map, data->y);
+			exit(0);
+		}
 		y++;
 	}
 	return (close(data->fd));
 }
+
+/*void	get_y(t_data *data, char *path)
+{
+	char	*line;
+	int		len;
+
+	data->fd = open(path, O_RDONLY);
+	line = get_next_line(data->fd);
+	data->x = (int)ft_strlen(line) - 1;
+	free(line);
+	close(data->fd);
+	data->fd = open(path, O_RDONLY);
+	while (1)
+	{
+		line = get_next_line(data->fd);
+		if (!line)
+			break ;
+		len = (int)ft_strlen(line) - 1;
+		free(line);
+		if (len != data->x)
+			err_pick('r', data->fd);
+		data->y++;
+	}
+	data->y--;
+	close(data->fd);
+	free(line);
+}
+
+int	get_x(t_data *data, char *path, int y)
+{
+	char	*temp;
+
+	data->map = malloc(data->y * sizeof(char **));
+	data->fd = open(path, O_RDONLY);
+	while (y <= data->y)
+	{
+		temp = get_next_line(data->fd);
+		data->map[y] = ft_strtrim(temp, "\n");
+		free(temp);
+		y++;
+	}
+	return (close(data->fd));
+}*/
 
 void	initialize(t_data *data)
 {
@@ -80,13 +124,6 @@ void	initialize(t_data *data)
 	data->picked = 0;
 	data->topick = 0;
 	data->moves = 0;
-	data->clct = malloc(sizeof(void *) * 2);
-	data->exit = malloc(sizeof(void *) * 5);
-	data->wall = malloc(sizeof(void *) * 10);
-	data->playeru = malloc(sizeof(void *) * 5);
-	data->playerd = malloc(sizeof(void *) * 5);
-	data->playerl = malloc(sizeof(void *) * 5);
-	data->playerr = malloc(sizeof(void *) * 5);
 	data->dir = 'U';
 }
 
@@ -110,7 +147,7 @@ int	free_2d(char **array, int size)
 	i = 0;
 	if (!array)
 		return (-1);
-	while (i <= size)
+	while (i <= size) //  && array[i])
 	{
 		free(array[i]);
 		i++;

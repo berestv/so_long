@@ -47,12 +47,6 @@ void	wall_handler(t_types *types, t_data *data, int x, int y)
 		types->trigger = -1;
 }
 
-void	exit_coord(t_data *data, int x, int y)
-{
-	data->ex = x;
-	data->ey = y;
-}
-
 int	next_random(unsigned int seed)
 {
 	unsigned int	multiplier;

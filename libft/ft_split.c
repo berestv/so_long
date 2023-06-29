@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 19:33:35 by bbento-e          #+#    #+#             */
-/*   Updated: 2022/11/10 12:44:17 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/29 17:41:03 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	**ft_split(const char *s, char c)
 			len = 0;
 			while (*s && *s != c && ++len)
 				++s;
-			ret[i++] = ft_substr(s - len, 0, len);
+			ret[i++] = ft_substr((char *)s - len, 0, len);
 		}
 		else
 			++s;

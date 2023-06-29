@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:05 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/28 19:46:25 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:26:17 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@ int	verify(t_data *data, t_types *types, char *str)
 	int		i;
 
 	type0(types);
-	i = (int)ft_strlen(str) - 4;
-	if (ft_strncmp(str + i, ".ber", 4) != 0 || !str)
-		return (err_picker('f'));
+	initialize(data);
 	i = open(str, O_RDONLY);
 	if (i < 0)
-		return (err_picker('/'));
+		return (err_pick('/', i));
 	close(i);
+	i = (int)ft_strlen(str) - 4;
+	if (ft_strncmp(str + i, ".ber", 4) != 0 || !str)
+		return (err_pick('f', 0));
 	get_y(data, str);
 	if (get_x(data, str, 0) == -1)
 		return (err_picker('r'));
@@ -77,10 +78,10 @@ int	count(t_types *types, t_data *data)
 		return (err_picker('c'));
 	if (types->trigger == -1)
 		return (err_picker('w'));
-	if (types->exit != types->exitcheck)
-		return (err_picker('E'));
 	if (types->clct != types->clctcheck)
 		return (err_picker('C'));
+	if (types->exit != types->exitcheck)
+		return (err_picker('E'));
 	if (types->unknown == -1)
 		return (err_picker('I'));
 	return (0);
@@ -96,7 +97,8 @@ void	pathcheck(t_types *types, t_data *data, int x, int y)
 		if (data->map[y][x] == 'E' && types->clct == types->clctcheck)
 		{
 			types->exitcheck++;
-			exit_coord(data, x, y);
+			data->ex = x;
+			data->ey = y;
 		}
 		data->map[y][x] = '-';
 		pathcheck(types, data, x + 1, y);

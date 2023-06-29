@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:05:18 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/27 16:38:37 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/29 14:24:06 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	img_init(t_data *data)
 {
+	data->clct = malloc(sizeof(void *) * 2);
 	data->floor = mlx_xpm_file_to_image(data->mlx,
 			FLOOR, &data->width, &data->height);
 	data->clct[0] = mlx_xpm_file_to_image(data->mlx,
@@ -28,6 +29,7 @@ void	img_init(t_data *data)
 
 void	wall_init(t_data *data)
 {
+	data->wall = malloc(sizeof(void *) * 10);
 	data->wall[0] = mlx_xpm_file_to_image(data->mlx,
 			WALL0, &data->width, &data->height);
 	data->wall[1] = mlx_xpm_file_to_image(data->mlx,
@@ -52,6 +54,7 @@ void	wall_init(t_data *data)
 
 void	exit_init(t_data *data)
 {
+	data->exit = malloc(sizeof(void *) * 5);
 	data->exit[0] = mlx_xpm_file_to_image(data->mlx,
 			EXIT0, &data->width, &data->height);
 	data->exit[1] = mlx_xpm_file_to_image(data->mlx,
@@ -66,6 +69,8 @@ void	exit_init(t_data *data)
 
 void	player_init_ud(t_data *data)
 {
+	data->playeru = malloc(sizeof(void *) * 5);
+	data->playerd = malloc(sizeof(void *) * 5);
 	data->playeru[0] = mlx_xpm_file_to_image(data->mlx,
 			PLRU0, &data->width, &data->height);
 	data->playeru[1] = mlx_xpm_file_to_image(data->mlx,
@@ -90,6 +95,8 @@ void	player_init_ud(t_data *data)
 
 void	player_init_lr(t_data *data)
 {
+	data->playerl = malloc(sizeof(void *) * 5);
+	data->playerr = malloc(sizeof(void *) * 5);
 	data->playerl[0] = mlx_xpm_file_to_image(data->mlx,
 			PLRL0, &data->width, &data->height);
 	data->playerl[1] = mlx_xpm_file_to_image(data->mlx,

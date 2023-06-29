@@ -32,10 +32,10 @@ $(MLX):
 
 
 $(NAME): $(OBJS) $(LIBFT) $(MLX)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX) $(MFLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX) $(MFLAGS)  -fPIE -o $(NAME)
 
 bonus: $(OBJS_BONUS) $(LIBFT) $(MLX)
-	@$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIBFT) $(MLX) $(MFLAGS) -o $(NAME_BONUS)
+	@$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIBFT) $(MLX) $(MFLAGS) -fPIE -o $(NAME_BONUS)
 
 clean:
 	@$(MAKE) clean -C ./libft

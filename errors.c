@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:17 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/28 14:25:16 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/29 17:21:03 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,6 @@ int	err_picker(char type)
 		ft_putstr_fd("Error\nMap is missing its boundaries.\n", 2);
 	else if (type == 'r')
 		ft_putstr_fd("Error\nMap isn't rectangular.\n", 2);
-	else if (type == 'f')
-		ft_putstr_fd("Error\nWrong map format. Use [path]/[mapname].ber\n", 2);
-	else if (type == '/')
-		ft_putstr_fd("Error\nFile not found. Use [path]/[mapname].ber\n", 2);
 	else if (type == 'E')
 		ft_putstr_fd("Error\nThe player is unable to exit the map.\n", 2);
 	else if (type == 'C')
@@ -39,9 +35,18 @@ int	err_picker(char type)
 	return (-1);
 }
 
-void	err_handler(void)
+int	err_pick(char type, int i)
 {
-	ft_putstr_fd("Error\nProgram usage: ./so_long [path]/[mapname].ber\n", 2);
+	if (type == 'f')
+		ft_putstr_fd("Error\nWrong map format. Use [path]/[mapname].ber\n", 2);
+	else if (type == 'r')
+		ft_putstr_fd("Error\nMap isn't rectangular.\n", 2);
+	else if (type == '/')
+	{
+		ft_putstr_fd("Error\nFile not found. Use [path]/[mapname].ber\n", 2);
+		close(i);
+	}
+	exit(0);
 }
 
 int	int_err_handler(int n)
