@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:32 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/29 18:27:59 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:46:28 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	get_x(t_data *data, char *path, int y)
 	char	*temp;
 
 //	data->map = malloc(data->y * sizeof(char *));
-	data->map = ft_calloc(data->y, sizeof(char *));
+	data->map = ft_calloc(data->y + 1, sizeof(char *));
 	data->fd = open(path, O_RDONLY);
 	while (y <= data->y)
 	{

@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:05 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/29 18:26:17 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:39:08 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	verify(t_data *data, t_types *types, char *str)
 		return (err_picker('r'));
 	if (finder(types, data) == -1)
 		return (-1);
-	ft_printf("\n\n\n");			   // DEL
+	//ft_printf("\n\n\n");			   // DEL
 	free_2d(data->map, data->y);
 	if (get_x(data, str, 0) == -1)
 		return (err_picker('r'));
