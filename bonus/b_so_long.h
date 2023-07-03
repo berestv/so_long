@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:12 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/07/03 13:50:31 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/06/29 14:09:29 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,16 @@ typedef struct s_types
 }			t_types;
 
 // ----------- ERRORS ----------- //
+int		err_pick(char type, int i);
 int		err_picker(char type);
 int		int_err_handler(int n);
-void	err_pick(char type, int i);
 
 // ----------- CHECKS ----------- //
 int		count(t_types *types, t_data *data);
 int		finder(t_types *types, t_data *data);
 void	unknown_handler(t_types *types, char c);
 int		verify(t_data *data, t_types *types, char *str);
+void	exit_coord(t_data *data, int x, int y);
 
 // ------------ MAP ------------- //
 int		updates(t_data *data);
@@ -90,11 +91,11 @@ void	destroy_img_array(t_data *data);
 
 // ---------- SPRITES ----------- //
 void	exit_sprite(t_data *data);
-void	mvmnt(t_data *data, int key);
 void	player_sprite_u(t_data *data);
 void	player_sprite_d(t_data *data);
 void	player_sprite_l(t_data *data);
 void	player_sprite_r(t_data *data);
+void	mvmnt(t_data *data, int key);
 void	mvmnt2(t_data *data, int key);
 void	smoothen(t_data *data, int x, int y);
 int		valid_mvmnt(t_data *data, int x, int y);

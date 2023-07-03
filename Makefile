@@ -19,6 +19,16 @@ SRCS = 	so_long.c\
 		sprites.c\
 		moves.c\
 
+BONUS = b_so_long.c\
+		b_utils.c\
+		b_utils2.c\
+		b_errors.c\
+		b_verif.c\
+		b_map_ops.c\
+		b_imgs_init.c\
+		b_sprites.c\
+		b_moves.c\
+
 OBJS = $(SRCS:%.c=%.o)
 OBJS_BONUS = $(BONUS:%.c=%.o)
 
@@ -32,10 +42,10 @@ $(MLX):
 
 
 $(NAME): $(OBJS) $(LIBFT) $(MLX)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX) $(MFLAGS)  -fPIE -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX) $(MFLAGS)  -o $(NAME)
 
 bonus: $(OBJS_BONUS) $(LIBFT) $(MLX)
-	@$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIBFT) $(MLX) $(MFLAGS) -fPIE -o $(NAME_BONUS)
+	@$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIBFT) $(MLX) $(MFLAGS) -o $(NAME_BONUS)
 
 clean:
 	@$(MAKE) clean -C ./libft
