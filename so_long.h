@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:12 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/07/03 13:50:31 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/07/04 14:27:19 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_types
 // ----------- ERRORS ----------- //
 int		err_picker(char type);
 int		int_err_handler(int n);
-void	err_pick(char type, int i);
+int		err_pick(char type, int i);
 
 // ----------- CHECKS ----------- //
 int		count(t_types *types, t_data *data);

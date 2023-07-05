@@ -6,11 +6,11 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:17 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/29 17:21:03 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/07/04 14:27:55 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	err_picker(char type)
 {

@@ -6,11 +6,11 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:27 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/29 18:33:38 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/07/05 14:31:26 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	key_handler(int key, t_data *data)
 {
@@ -54,6 +54,11 @@ int	end(t_data *data)
 
 void	destroy_img_array(t_data *data)
 {
+	mlx_destroy_image(data->mlx, data->astr[0]);
+	mlx_destroy_image(data->mlx, data->astr[1]);
+	mlx_destroy_image(data->mlx, data->astr[2]);
+	mlx_destroy_image(data->mlx, data->astr[3]);
+	mlx_destroy_image(data->mlx, data->astr[4]);
 	mlx_destroy_image(data->mlx, data->playeru[0]);
 	mlx_destroy_image(data->mlx, data->playeru[1]);
 	mlx_destroy_image(data->mlx, data->playeru[2]);
@@ -81,6 +86,7 @@ void	free_dp(t_data *data)
 	free(data->wall);
 	free(data->clct);
 	free(data->exit);
+	free(data->astr);
 	free(data->playerd);
 	free(data->playeru);
 	free(data->playerl);

@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/14 17:23:12 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/29 14:09:29 by bbento-e         ###   ########.fr       */
+/*   Created: 2023/07/04 16:58:43 by bbento-e          #+#    #+#             */
+/*   Updated: 2023/07/05 16:27:40 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
-# include "minilibx-linux/mlx.h"
-# include "libft/libft.h"
+# include "../minilibx-linux/mlx.h"
+# include "../libft/libft.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <stdlib.h>
@@ -38,6 +38,7 @@ typedef struct s_data
 	int		height;
 	void	**wall;
 	void	**exit;
+	void	**astr;
 	void	*floor;
 	void	**clct;
 	void	**playeru;
@@ -62,16 +63,15 @@ typedef struct s_types
 }			t_types;
 
 // ----------- ERRORS ----------- //
-int		err_pick(char type, int i);
 int		err_picker(char type);
 int		int_err_handler(int n);
+int		err_pick(char type, int i);
 
 // ----------- CHECKS ----------- //
 int		count(t_types *types, t_data *data);
 int		finder(t_types *types, t_data *data);
 void	unknown_handler(t_types *types, char c);
 int		verify(t_data *data, t_types *types, char *str);
-void	exit_coord(t_data *data, int x, int y);
 
 // ------------ MAP ------------- //
 int		updates(t_data *data);
@@ -91,14 +91,18 @@ void	destroy_img_array(t_data *data);
 
 // ---------- SPRITES ----------- //
 void	exit_sprite(t_data *data);
+void	mvmnt(t_data *data, int key);
 void	player_sprite_u(t_data *data);
 void	player_sprite_d(t_data *data);
 void	player_sprite_l(t_data *data);
 void	player_sprite_r(t_data *data);
-void	mvmnt(t_data *data, int key);
 void	mvmnt2(t_data *data, int key);
 void	smoothen(t_data *data, int x, int y);
 int		valid_mvmnt(t_data *data, int x, int y);
+
+// ---------- ENEMY ----------- //
+int		asteroid(t_data *data);
+void	execute_order66(t_data *data, int x, int y, int i);
 
 // ----------- UTILS -----------  //
 int		contradict(void);
@@ -164,6 +168,13 @@ void	ft_print_array(t_data *data, char **array);
 # define EXIT2 "./img/sprites/exit2.xpm"
 # define EXIT3 "./img/sprites/exit3.xpm"
 # define EXIT4 "./img/sprites/exit4.xpm"
+
+// ----------- ASTRO ----------- //
+# define ASTR0 "./img/sprites/asteroid0.xpm"
+# define ASTR1 "./img/sprites/asteroid1.xpm"
+# define ASTR2 "./img/sprites/asteroid2.xpm"
+# define ASTR3 "./img/sprites/asteroid3.xpm"
+# define ASTR4 "./img/sprites/asteroid4.xpm"
 
 // ---------- COLLECT ---------- //
 # define COLL0 "./img/textures/coll0.xpm"

@@ -19,15 +19,15 @@ SRCS = 	so_long.c\
 		sprites.c\
 		moves.c\
 
-BONUS = b_so_long.c\
-		b_utils.c\
-		b_utils2.c\
-		b_errors.c\
-		b_verif.c\
-		b_map_ops.c\
-		b_imgs_init.c\
-		b_sprites.c\
-		b_moves.c\
+BONUS =	bonus/b_main.c\
+		bonus/b_utils.c\
+		bonus/b_utils2.c\
+		bonus/b_errors.c\
+		bonus/b_verif.c\
+		bonus/b_map_ops.c\
+		bonus/b_imgs_init.c\
+		bonus/b_sprites.c\
+		bonus/b_moves.c\
 
 OBJS = $(SRCS:%.c=%.o)
 OBJS_BONUS = $(BONUS:%.c=%.o)
@@ -40,9 +40,8 @@ $(LIBFT):
 $(MLX):
 	@$(MAKE) -C ./minilibx-linux
 
-
 $(NAME): $(OBJS) $(LIBFT) $(MLX)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX) $(MFLAGS)  -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX) $(MFLAGS) -o $(NAME)
 
 bonus: $(OBJS_BONUS) $(LIBFT) $(MLX)
 	@$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIBFT) $(MLX) $(MFLAGS) -o $(NAME_BONUS)

@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:17 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/07/03 13:50:09 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/07/04 14:28:17 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	err_picker(char type)
 	return (-1);
 }
 
-void	err_pick(char type, int i)
+int	err_pick(char type, int i)
 {
 	if (type == 'f')
 		ft_putstr_fd("Error\nWrong map format. Use [path]/[mapname].ber\n", 2);

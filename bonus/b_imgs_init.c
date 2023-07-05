@@ -6,11 +6,11 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:05:18 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/29 14:24:06 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/07/04 17:11:19 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	img_init(t_data *data)
 {
@@ -65,6 +65,17 @@ void	exit_init(t_data *data)
 			EXIT3, &data->width, &data->height);
 	data->exit[4] = mlx_xpm_file_to_image(data->mlx,
 			EXIT4, &data->width, &data->height);
+	data->astr = malloc(sizeof(void *) * 5);
+	data->astr[0] = mlx_xpm_file_to_image(data->mlx,
+			ASTR0, &data->width, &data->height);
+	data->astr[1] = mlx_xpm_file_to_image(data->mlx,
+			ASTR1, &data->width, &data->height);
+	data->astr[2] = mlx_xpm_file_to_image(data->mlx,
+			ASTR2, &data->width, &data->height);
+	data->astr[3] = mlx_xpm_file_to_image(data->mlx,
+			ASTR3, &data->width, &data->height);
+	data->astr[4] = mlx_xpm_file_to_image(data->mlx,
+			ASTR4, &data->width, &data->height);
 }
 
 void	player_init_ud(t_data *data)
