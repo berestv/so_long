@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:05 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/07/03 12:35:22 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:07:33 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	verify(t_data *data, t_types *types, char *str)
 {
 	int		i;
 
+	srand(time(0));
 	type0(types);
 	initialize(data);
 	i = open(str, O_RDONLY);
@@ -30,10 +31,11 @@ int	verify(t_data *data, t_types *types, char *str)
 		return (err_picker('r'));
 	if (finder(types, data) == -1)
 		return (-1);
-	//ft_printf("\n\n\n");			   // DEL
 	free_2d(data->map, data->y);
 	if (get_x(data, str, 0) == -1)
 		return (err_picker('r'));
+	data->ax = data->x - 2;
+	data->ay = (rand() % ((data->y - 2) + 1 - 0) + 1);
 	ft_print_array(data, data->map); // DEL
 	return (0);
 }

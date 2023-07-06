@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:32 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/07/03 12:47:47 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:58:12 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,10 @@ int	get_x(t_data *data, char *path, int y)
 
 void	initialize(t_data *data)
 {
+	srand(time(0));
 	data->fd = 0;
+	data->explode = 0;
+	data->r = rand() % (200000 + 1 - 0) + 0;
 	data->x = 0;
 	data->y = 0;
 	data->px = 0;
@@ -103,7 +106,7 @@ int	free_2d(char **array, int size)
 	i = 0;
 	if (!array)
 		return (-1);
-	while (i <= size) //  && array[i])
+	while (i <= size)
 	{
 		free(array[i]);
 		i++;

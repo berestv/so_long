@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:05:18 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/07/04 17:11:19 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:38:32 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,16 @@ void	img_init(t_data *data)
 	exit_init(data);
 	player_init_ud(data);
 	player_init_lr(data);
+	data->astr[5] = mlx_xpm_file_to_image(data->mlx,
+			BOOM0, &data->width, &data->height);
+	data->astr[6] = mlx_xpm_file_to_image(data->mlx,
+			BOOM1, &data->width, &data->height);
+	data->astr[7] = mlx_xpm_file_to_image(data->mlx,
+			BOOM2, &data->width, &data->height);
+	data->astr[8] = mlx_xpm_file_to_image(data->mlx,
+			BOOM3, &data->width, &data->height);
+	data->astr[9] = mlx_xpm_file_to_image(data->mlx,
+			BOOM4, &data->width, &data->height);
 }
 
 void	wall_init(t_data *data)
@@ -65,7 +75,7 @@ void	exit_init(t_data *data)
 			EXIT3, &data->width, &data->height);
 	data->exit[4] = mlx_xpm_file_to_image(data->mlx,
 			EXIT4, &data->width, &data->height);
-	data->astr = malloc(sizeof(void *) * 5);
+	data->astr = malloc(sizeof(void *) * 10);
 	data->astr[0] = mlx_xpm_file_to_image(data->mlx,
 			ASTR0, &data->width, &data->height);
 	data->astr[1] = mlx_xpm_file_to_image(data->mlx,

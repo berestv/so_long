@@ -28,6 +28,7 @@ BONUS =	bonus/b_main.c\
 		bonus/b_imgs_init.c\
 		bonus/b_sprites.c\
 		bonus/b_moves.c\
+		bonus/asteroid.c\
 
 OBJS = $(SRCS:%.c=%.o)
 OBJS_BONUS = $(BONUS:%.c=%.o)

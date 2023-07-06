@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:58:43 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/07/05 16:27:40 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/07/06 19:28:10 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,28 @@
 # include <X11/keysym.h>
 # include <stdlib.h>
 # include <signal.h>
+# include <time.h>
 
 typedef struct s_data
 {
 	void	*mlx;
 	void	*win;
 	int		fd;
+	int		r;
 	int		x;
 	int		y;
 	int		py;
 	int		px;
 	int		ex;
 	int		ey;
+	int		ax;
+	int		ay;
 	int		picked;
 	int		topick;
 	int		moves;
 	int		width;
 	int		height;
+	int		explode;
 	void	**wall;
 	void	**exit;
 	void	**astr;
@@ -81,13 +86,13 @@ void	wall_init(t_data *data);
 void	exit_init(t_data *data);
 void	player_init_ud(t_data *data);
 void	player_init_lr(t_data *data);
+int		key_handler(int key, t_data *data);
 void	img_picker(t_data *data, int x, int y);
 
 // ------------ END ------------- //
 int		end(t_data *data);
 void	free_dp(t_data *data);
 void	destroy_img_array(t_data *data);
-
 
 // ---------- SPRITES ----------- //
 void	exit_sprite(t_data *data);
@@ -100,9 +105,12 @@ void	mvmnt2(t_data *data, int key);
 void	smoothen(t_data *data, int x, int y);
 int		valid_mvmnt(t_data *data, int x, int y);
 
-// ---------- ENEMY ----------- //
+// ------------ ASTRO ----------- //
+void	explode(t_data *data);
 int		asteroid(t_data *data);
-void	execute_order66(t_data *data, int x, int y, int i);
+void	astroy_destroy(t_data *data);
+void	execute_order66(t_data *data);
+void	continue_order66(t_data *data, int i);
 
 // ----------- UTILS -----------  //
 int		contradict(void);
@@ -175,6 +183,13 @@ void	ft_print_array(t_data *data, char **array);
 # define ASTR2 "./img/sprites/asteroid2.xpm"
 # define ASTR3 "./img/sprites/asteroid3.xpm"
 # define ASTR4 "./img/sprites/asteroid4.xpm"
+
+// ----------- BOOM ----------- //
+# define BOOM0 "./img/sprites/boom0.xpm"
+# define BOOM1 "./img/sprites/boom1.xpm"
+# define BOOM2 "./img/sprites/boom2.xpm"
+# define BOOM3 "./img/sprites/boom3.xpm"
+# define BOOM4 "./img/sprites/boom4.xpm"
 
 // ---------- COLLECT ---------- //
 # define COLL0 "./img/textures/coll0.xpm"

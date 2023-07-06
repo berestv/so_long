@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:32 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/07/03 12:47:47 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/07/06 12:42:51 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	free_2d(char **array, int size)
 	i = 0;
 	if (!array)
 		return (-1);
-	while (i <= size) //  && array[i])
+	while (i <= size)
 	{
 		free(array[i]);
 		i++;

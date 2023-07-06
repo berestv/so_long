@@ -6,22 +6,11 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:27 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/07/05 14:31:26 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/07/06 19:25:23 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
-
-int	key_handler(int key, t_data *data)
-{
-	if (key == XK_Escape)
-		end(data);
-	else if (key == XK_w || key == XK_a || key == XK_s || key == XK_d)
-		mvmnt(data, key);
-	else
-		return (-1);
-	return (0);
-}
 
 int	end(t_data *data)
 {
@@ -54,11 +43,6 @@ int	end(t_data *data)
 
 void	destroy_img_array(t_data *data)
 {
-	mlx_destroy_image(data->mlx, data->astr[0]);
-	mlx_destroy_image(data->mlx, data->astr[1]);
-	mlx_destroy_image(data->mlx, data->astr[2]);
-	mlx_destroy_image(data->mlx, data->astr[3]);
-	mlx_destroy_image(data->mlx, data->astr[4]);
 	mlx_destroy_image(data->mlx, data->playeru[0]);
 	mlx_destroy_image(data->mlx, data->playeru[1]);
 	mlx_destroy_image(data->mlx, data->playeru[2]);
@@ -79,6 +63,21 @@ void	destroy_img_array(t_data *data)
 	mlx_destroy_image(data->mlx, data->playerr[2]);
 	mlx_destroy_image(data->mlx, data->playerr[3]);
 	mlx_destroy_image(data->mlx, data->playerr[4]);
+	astroy_destroy(data);
+}
+
+void	astroy_destroy(t_data *data)
+{
+	mlx_destroy_image(data->mlx, data->astr[0]);
+	mlx_destroy_image(data->mlx, data->astr[1]);
+	mlx_destroy_image(data->mlx, data->astr[2]);
+	mlx_destroy_image(data->mlx, data->astr[3]);
+	mlx_destroy_image(data->mlx, data->astr[4]);
+	mlx_destroy_image(data->mlx, data->astr[5]);
+	mlx_destroy_image(data->mlx, data->astr[6]);
+	mlx_destroy_image(data->mlx, data->astr[7]);
+	mlx_destroy_image(data->mlx, data->astr[8]);
+	mlx_destroy_image(data->mlx, data->astr[9]);
 }
 
 void	free_dp(t_data *data)
