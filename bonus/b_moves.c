@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 17:13:48 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/07/06 19:13:17 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/07/07 14:24:54 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,9 @@ int	updates(t_data *data)
 		execute_order66(data);
 	if (data->picked == data->topick)
 		exit_sprite(data);
-	if ((data->px == data->ax && data->py == data->ay) || data->explode == -1)
+	if (data->px == data->ax && data->py == data->ay)
 	{
 		ft_printf("You got hit. Mission failed!\n");
-		explode(data);
 		end(data);
 	}
 	return (0);

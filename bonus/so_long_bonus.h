@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:58:43 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/07/06 19:28:10 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/07/07 15:30:33 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,9 @@ void	smoothen(t_data *data, int x, int y);
 int		valid_mvmnt(t_data *data, int x, int y);
 
 // ------------ ASTRO ----------- //
-void	explode(t_data *data);
 int		asteroid(t_data *data);
+void	explode(t_data *data, int i);
+void	reset_astr_img(t_data *data);
 void	astroy_destroy(t_data *data);
 void	execute_order66(t_data *data);
 void	continue_order66(t_data *data, int i);

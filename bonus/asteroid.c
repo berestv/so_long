@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 17:19:50 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/07/06 19:40:54 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/07/07 15:30:51 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	asteroid(t_data *data)
 	{
 		data->fd = 1;
 		i = 0;
-		data->r = (rand() % (750000 + 1 - 0) + 0);
+		data->r = (rand() % (100000 + 1 - 0) + 0);
 		return (1);
 	}
 	i++;
@@ -43,7 +43,8 @@ void	execute_order66(t_data *data)
 		mlx_put_image_to_window(data->mlx, data->win,
 			data->astr[2], (data->ax * 64), (data->ay * 64));
 	continue_order66(data, i);
-	if (i == 6000)
+	explode(data, i);
+	if (i == data->explode)
 		i = 0;
 	i++;
 }
@@ -62,61 +63,46 @@ void	continue_order66(t_data *data, int i)
 		data->ax--;
 		mlx_put_image_to_window(data->mlx, data->win,
 			data->astr[0], (data->ax * 64), (data->ay * 64));
+		data->explode = 6000;
 	}
-	if (data->ax == 0 || (data->map[data->ay][data->ax] != '0'
-		&& data->map[data->ay][data->ax] != 'C'
-		&& data->map[data->ay][data->ax] != 'P'))
+	if (data->map[data->ay][data->ax] != 'C'
+		&& data->map[data->ay][data->ax] != '0')
+		reset_astr_img(data);
+}
+
+void	explode(t_data *data, int i)
+{
+	if ((data->map[data->ay][data->ax - 1] == '1'
+		|| data->map[data->ay][data->ax - 1] == 'P'))
 	{
-		explode(data);
-		data->ax = data->x - 2;
-		data->ay = (rand() % ((data->y - 2) + 1 - 0) + 1);
-		data->fd = 0;
-		img_picker(data, data->ax, data->ay);
+		data->explode = 21000;
+		if (i == 9000)
+			mlx_put_image_to_window(data->mlx, data->win,
+				data->astr[5], (data->ax * 64), (data->ay * 64));
+		else if (i == 12000)
+			mlx_put_image_to_window(data->mlx, data->win,
+				data->astr[6], (data->ax * 64), (data->ay * 64));
+		else if (i == 15000)
+			mlx_put_image_to_window(data->mlx, data->win,
+				data->astr[7], (data->ax * 64), (data->ay * 64));
+		else if (i == 18000)
+			mlx_put_image_to_window(data->mlx, data->win,
+				data->astr[8], (data->ax * 64), (data->ay * 64));
+		else if (i == 21000)
+		{
+			mlx_put_image_to_window(data->mlx, data->win,
+				data->astr[9], (data->ax * 64), (data->ay * 64));
+			if (data->map[data->ay][data->ax - 1] == 'P')
+				end(data);
+			reset_astr_img(data);
+		}
 	}
 }
 
-void	explode(t_data *data)
+void	reset_astr_img(t_data *data)
 {
-	clock_t start_time = clock();
-	clock_t current_time;
-
-	// Display the first image
-	mlx_put_image_to_window(data->mlx, data->win,
-							data->astr[5], (data->ax * 64), (data->ay * 64));
-
-	// Wait for 500 milliseconds (0.5 seconds)
-	while (((double)(current_time = clock() - start_time) / CLOCKS_PER_SEC) < 0.5);
-
-	// Display the second image
-	mlx_put_image_to_window(data->mlx, data->win,
-							data->astr[6], (data->ax * 64), (data->ay * 64));
-
-	// Wait for 500 milliseconds (0.5 seconds)
-	start_time = clock();
-	while (((double)(current_time = clock() - start_time) / CLOCKS_PER_SEC) < 0.5);
-
-	// Repeat the same process for the remaining images...
-
-	// Display the third image
-	mlx_put_image_to_window(data->mlx, data->win,
-							data->astr[7], (data->ax * 64), (data->ay * 64));
-
-	// Wait for 500 milliseconds (0.5 seconds)
-	start_time = clock();
-	while (((double)(current_time = clock() - start_time) / CLOCKS_PER_SEC) < 0.5);
-
-	// Display the fourth image
-	mlx_put_image_to_window(data->mlx, data->win,
-							data->astr[8], (data->ax * 64), (data->ay * 64));
-
-	// Wait for 500 milliseconds (0.5 seconds)
-	start_time = clock();
-	while (((double)(current_time = clock() - start_time) / CLOCKS_PER_SEC) < 0.5);
-
-	// Display the fifth image
-	mlx_put_image_to_window(data->mlx, data->win,
-							data->astr[9], (data->ax * 64), (data->ay * 64));
-
-	// Call the img_picker function
 	img_picker(data, data->ax, data->ay);
+	data->ax = data->x - 2;
+	data->ay = (rand() % ((data->y - 2) + 1 - 0) + 1);
+	data->fd = 0;
 }
