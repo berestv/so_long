@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:58:43 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/07/07 15:30:33 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/07/07 18:16:30 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_data
 	int		ey;
 	int		ax;
 	int		ay;
+	int		diff;
 	int		picked;
 	int		topick;
 	int		moves;
@@ -72,6 +73,9 @@ int		err_picker(char type);
 int		int_err_handler(int n);
 int		err_pick(char type, int i);
 
+// --------- TEXT TO WIN -------- //
+void	txt_to_win(t_data *data);
+
 // ----------- CHECKS ----------- //
 int		count(t_types *types, t_data *data);
 int		finder(t_types *types, t_data *data);
@@ -107,6 +111,7 @@ int		valid_mvmnt(t_data *data, int x, int y);
 
 // ------------ ASTRO ----------- //
 int		asteroid(t_data *data);
+int		can_explode(t_data *data);
 void	explode(t_data *data, int i);
 void	reset_astr_img(t_data *data);
 void	astroy_destroy(t_data *data);

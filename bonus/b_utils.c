@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:32 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/07/06 18:58:12 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/07/07 18:02:20 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	initialize(t_data *data)
 	data->fd = 0;
 	data->explode = 0;
 	data->r = rand() % (200000 + 1 - 0) + 0;
+	data->diff = 100000;
 	data->x = 0;
 	data->y = 0;
 	data->px = 0;

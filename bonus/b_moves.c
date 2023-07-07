@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 17:13:48 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/07/07 14:24:54 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/07/07 18:07:46 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	valid_mvmnt(t_data *data, int x, int y)
 	if (data->map[y][x] == 'E' || data->map[y][x] == '1')
 		return (0);
 	data->moves++;
+	txt_to_win(data);
 	ft_printf("Moves: %i\n", data->moves);
 	smoothen(data, x, y);
 	if (data->map[y][x] == 'C' && data->picked != data->topick)
@@ -72,7 +73,10 @@ int	valid_mvmnt(t_data *data, int x, int y)
 		data->map[y][x] = '0';
 		smoothen(data, x, y);
 		if (data->picked == data->topick)
+		{
 			data->map[data->ey][data->ex] = 'e';
+			data->diff = 50;
+		}
 	}
 	else if (data->map[y][x] == 'e')
 	{

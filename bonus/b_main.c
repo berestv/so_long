@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:27 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/07/06 19:25:23 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/07/07 17:52:11 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ int	main(int argc, char *argv[])
 		data.win = mlx_new_window(data.mlx, (data.x * 64),
 				((data.y + 1) * 64), "so_long");
 		populate(&data);
+		txt_to_win(&data);
 		mlx_hook(data.win, DestroyNotify, StructureNotifyMask, &end, &data);
 		mlx_key_hook(data.win, &key_handler, &data);
 		mlx_loop_hook(data.mlx, &updates, &data);
