@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:05:18 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/07/06 18:38:32 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:22:16 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,20 @@
 void	img_init(t_data *data)
 {
 	data->clct = malloc(sizeof(void *) * 2);
-	data->floor = mlx_xpm_file_to_image(data->mlx,
-			FLOOR, &data->width, &data->height);
 	data->clct[0] = mlx_xpm_file_to_image(data->mlx,
 			COLL0, &data->width, &data->height);
 	data->clct[1] = mlx_xpm_file_to_image(data->mlx,
 			COLL1, &data->width, &data->height);
+	data->windows = malloc(sizeof(void *) * 4);
+	data->windows[0] = mlx_xpm_file_to_image(data->mlx,
+			MOVES, &data->width, &data->height);
+	data->windows[1] = mlx_xpm_file_to_image(data->mlx,
+			COLBG, &data->width, &data->height);
+	data->windows[2] = mlx_xpm_file_to_image(data->mlx,
+			EXTCL, &data->width, &data->height);
+	data->windows[3] = mlx_xpm_file_to_image(data->mlx,
+			EXTOP, &data->width, &data->height);
 	wall_init(data);
-	exit_init(data);
-	player_init_ud(data);
-	player_init_lr(data);
 	data->astr[5] = mlx_xpm_file_to_image(data->mlx,
 			BOOM0, &data->width, &data->height);
 	data->astr[6] = mlx_xpm_file_to_image(data->mlx,
@@ -60,6 +64,9 @@ void	wall_init(t_data *data)
 			WALL8, &data->width, &data->height);
 	data->wall[9] = mlx_xpm_file_to_image(data->mlx,
 			WALL9, &data->width, &data->height);
+	data->floor = mlx_xpm_file_to_image(data->mlx,
+			FLOOR, &data->width, &data->height);
+	exit_init(data);
 }
 
 void	exit_init(t_data *data)
@@ -86,6 +93,8 @@ void	exit_init(t_data *data)
 			ASTR3, &data->width, &data->height);
 	data->astr[4] = mlx_xpm_file_to_image(data->mlx,
 			ASTR4, &data->width, &data->height);
+	player_init_ud(data);
+	player_init_lr(data);
 }
 
 void	player_init_ud(t_data *data)

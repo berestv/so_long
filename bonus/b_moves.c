@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 17:13:48 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/07/07 18:07:46 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:40:41 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ int	valid_mvmnt(t_data *data, int x, int y)
 		return (0);
 	data->moves++;
 	txt_to_win(data);
-	ft_printf("Moves: %i\n", data->moves);
 	smoothen(data, x, y);
 	if (data->map[y][x] == 'C' && data->picked != data->topick)
 	{
@@ -72,6 +71,7 @@ int	valid_mvmnt(t_data *data, int x, int y)
 		data->picked++;
 		data->map[y][x] = '0';
 		smoothen(data, x, y);
+		txt_to_win(data);
 		if (data->picked == data->topick)
 		{
 			data->map[data->ey][data->ex] = 'e';
@@ -105,6 +105,11 @@ void	smoothen(t_data *data, int x, int y)
 
 int	updates(t_data *data)
 {
+	if (data->px == data->ax - 1 && data->py == data->ay)
+	{
+		ft_printf("You got hit. Mission failed!\n");
+		end(data);
+	}
 	if (data->dir == 'U')
 		player_sprite_u(data);
 	else if (data->dir == 'D')
@@ -117,10 +122,5 @@ int	updates(t_data *data)
 		execute_order66(data);
 	if (data->picked == data->topick)
 		exit_sprite(data);
-	if (data->px == data->ax && data->py == data->ay)
-	{
-		ft_printf("You got hit. Mission failed!\n");
-		end(data);
-	}
 	return (0);
 }

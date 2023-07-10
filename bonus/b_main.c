@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:27 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/07/07 17:52:11 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:34:42 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,10 @@ void	astroy_destroy(t_data *data)
 	mlx_destroy_image(data->mlx, data->astr[7]);
 	mlx_destroy_image(data->mlx, data->astr[8]);
 	mlx_destroy_image(data->mlx, data->astr[9]);
+	mlx_destroy_image(data->mlx, data->windows[0]);
+	mlx_destroy_image(data->mlx, data->windows[1]);
+	mlx_destroy_image(data->mlx, data->windows[2]);
+	mlx_destroy_image(data->mlx, data->windows[3]);
 }
 
 void	free_dp(t_data *data)
@@ -86,6 +90,7 @@ void	free_dp(t_data *data)
 	free(data->clct);
 	free(data->exit);
 	free(data->astr);
+	free(data->windows);
 	free(data->playerd);
 	free(data->playeru);
 	free(data->playerl);

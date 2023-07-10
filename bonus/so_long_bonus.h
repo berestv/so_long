@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:58:43 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/07/07 18:16:30 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:20:17 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_data
 	void	**playerd;
 	void	**playerl;
 	void	**playerr;
+	void	**windows;
 	char	dir;
 	char	**map;
 }			t_data;
@@ -200,5 +201,11 @@ void	ft_print_array(t_data *data, char **array);
 // ---------- COLLECT ---------- //
 # define COLL0 "./img/textures/coll0.xpm"
 # define COLL1 "./img/textures/coll1.xpm"
+
+// ---------- COLLECT ---------- //
+# define MOVES "./img/textures/moves.xpm"
+# define COLBG "./img/textures/col_bg.xpm"
+# define EXTCL "./img/textures/exit_stat_closed.xpm"
+# define EXTOP "./img/textures/exit_stat_open.xpm"
 
 #endif

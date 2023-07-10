@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 15:54:32 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/07/07 18:21:29 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:30:45 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,22 @@ void	txt_to_win(t_data *data)
 	char	*str;
 	char	*picked;
 	char	*topick;
+	int		sum;
 
 	str = ft_itoa(data->moves);
 	picked = ft_itoa(data->picked);
 	topick = ft_itoa(data->topick);
-	img_picker(data, 0, 0);
-	img_picker(data, 1, 0);
-	mlx_string_put(data->mlx, data->win, 15, 15, 0xFFFFFF, "Moves: ");
-	mlx_string_put(data->mlx, data->win, 60, 15, 0xFFFFFF, str);
+	sum = ft_strlen(str);
+	mlx_put_image_to_window(data->mlx, data->win, data->windows[0], 0, 0);
+	mlx_put_image_to_window(data->mlx, data->win, data->windows[1], 64, 0);
+	if (data->picked == data->topick)
+		mlx_put_image_to_window(data->mlx, data->win, data->windows[3], 128, 0);
+	else
+		mlx_put_image_to_window(data->mlx, data->win, data->windows[2], 128, 0);
+	mlx_string_put(data->mlx, data->win, 32 - (sum * 3), 29, 0x3DC700, str);
+	sum = ft_strlen(picked);
+	mlx_string_put(data->mlx, data->win, 85 - (sum * 3), 34, 0xFFFFFF, picked);
+	mlx_string_put(data->mlx, data->win, 104, 34, 0xFFFFFF, topick);
 	free(str);
 	free(picked);
 	free(topick);
