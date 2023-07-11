@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:12 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/07/04 14:27:19 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/07/11 10:42:40 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void	img_picker(t_data *data, int x, int y);
 int		end(t_data *data);
 void	free_dp(t_data *data);
 void	destroy_img_array(t_data *data);
-
 
 // ---------- SPRITES ----------- //
 void	exit_sprite(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 16:35:23 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/06/28 14:03:29 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/07/11 10:42:58 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	img_picker(t_data *data, int x, int y)
 {
 	int	s;
 	int	r;
-
 
 	s = next_random(data->x + data->y + x + y);
 	r = rand_gen(0, 9, s);

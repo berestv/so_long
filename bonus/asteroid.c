@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 17:19:50 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/07/10 15:42:16 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/07/11 10:19:58 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,6 @@ void	explode(t_data *data, int i)
 		{
 			mlx_put_image_to_window(data->mlx, data->win,
 				data->astr[9], (data->ax * 64), (data->ay * 64));
-			/*if (data->map[data->ay][data->ax - 1] == 'P')
-				end(data);*/
 			reset_astr_img(data);
 		}
 	}

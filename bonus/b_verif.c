@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:05 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/07/06 16:07:33 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/07/11 11:51:29 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	verify(t_data *data, t_types *types, char *str)
 	i = open(str, O_RDONLY);
 	if (i < 0)
 		return (err_pick('/', i));
+	if (!get_next_line(i))
+		return (err_pick('/', i));
 	close(i);
 	i = (int)ft_strlen(str) - 4;
 	if (ft_strncmp(str + i, ".ber", 4) != 0 || !str)
@@ -36,7 +38,6 @@ int	verify(t_data *data, t_types *types, char *str)
 		return (err_picker('r'));
 	data->ax = data->x - 2;
 	data->ay = (rand() % ((data->y - 2) + 1 - 0) + 1);
-	ft_print_array(data, data->map); // DEL
 	return (0);
 }
 
@@ -126,4 +127,3 @@ void	pathcheck(t_types *types, t_data *data, int x, int y)
 		pathcheck(types, data, x, y - 1);
 	}
 }
-
