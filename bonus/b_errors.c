@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:17 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/07/04 14:27:55 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/07/11 11:56:41 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,11 @@ int	err_pick(char type, int i)
 	else if (type == '/')
 	{
 		ft_putstr_fd("Error\nFile not found. Use [path]/[mapname].ber\n", 2);
+		close(i);
+	}
+	else if (type == 'D')
+	{
+		ft_putstr_fd("Error\nEmpty map.\n", 2);
 		close(i);
 	}
 	exit(0);

@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:23:05 by bbento-e          #+#    #+#             */
-/*   Updated: 2023/07/11 11:47:57 by bbento-e         ###   ########.fr       */
+/*   Updated: 2023/07/11 11:55:44 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	verify(t_data *data, t_types *types, char *str)
 	if (i < 0)
 		return (err_pick('/', i));
 	if (!get_next_line(i))
-		return (err_pick('/', i));
+		return (err_pick('D', i));
 	close(i);
 	i = (int)ft_strlen(str) - 4;
 	if (ft_strncmp(str + i, ".ber", 4) != 0 || !str)
